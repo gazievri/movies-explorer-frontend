@@ -1,0 +1,25 @@
+.navtab {
+  background: rgba(39, 39, 39, 1);
+  height: 66px;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+
+}
+
+.navtab__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  column-gap: 40px;
+  margin: 0 auto 0;
+}
+
+.navtab__item {
+  list-style-type: none;
+  text-decoration: underline;
+}
+
+.navtab__item:hover {
+  cursor: pointer;
+}

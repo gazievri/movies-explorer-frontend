@@ -1,0 +1,29 @@
+.main {
+  margin: 0;
+  padding: 0;
+}
+
+.main__promo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 48, 66, 1);
+  height: 524px;
+  background-image: url('../../../images/promo-logo.svg');
+  background-repeat: no-repeat;
+  background-position: center 82px;
+  background-size:  320px 320px;
+}
+
+.main__title {
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  width: 730px;
+  height: 116px;
+  padding-bottom: 40px;
+}

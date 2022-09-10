@@ -1,0 +1,36 @@
+.aboutme {
+  height: 1079px;
+  background: rgba(32, 32, 32, 1);
+  border: 1px solid red;
+  color: rgba(255, 255, 255, 1);
+}
+
+.aboutme__title {
+  margin: 110px 70px 0;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgba(218, 218, 218, 1);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+}
+
+.aboutme__profile {
+  margin: 90px 70px 0;
+  display: flex;
+}
+
+
+
+
+
+.aboutme__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-left: auto;
+}
+
+
