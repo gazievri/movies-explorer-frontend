@@ -1,6 +1,111 @@
 .aboutproject {
-  background: rgba(32, 32, 32, 1);
-  height: 608px;
   color: rgba(255, 255, 255, 1);
-  
+  margin: 0 70px;
+  padding: 110px 0;
+}
+
+.aboutproject__title {
+  margin: 0;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgba(218, 218, 218, 1);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+}
+
+.aboutproject__list {
+  display: flex;
+  column-gap: 40px;
+  list-style-type: none;
+  padding: 0;
+  margin: 70px 0 110px;
+}
+
+.aboutproject__item {
+  max-width: 550px;
+}
+
+.aboutproject__item-title {
+  margin: 0 0 26px 0;
+  padding: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+}
+
+.aboutproject__item-text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.aboutproject__graph {
+  display: flex;
+  column-gap: 0;
+}
+
+.aboutproject__graph-first {
+  width:228px;
+}
+
+.aboutproject__graph-first-text {
+  background-color: rgba(61, 220, 132, 1);
+  color: rgba(0, 0, 0, 1);
+  margin: 0 0 14px 0;
+  height: 36px;
+  text-align: center;
+  padding-top: 9px;
+  box-sizing: border-box;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.aboutproject__graph-first-span {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: rgba(139, 139, 139, 1);
+}
+
+.aboutproject__graph-second {
+  flex-grow: 1;
+}
+
+.aboutproject__graph-second-text {
+  background-color: rgba(48, 48, 48, 1);
+  margin: 0 0 14px 0;
+  height: 36px;
+  text-align: center;
+  padding-top: 9px;
+  box-sizing: border-box;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.aboutproject__graph-second-span {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: rgba(139, 139, 139, 1);
 }

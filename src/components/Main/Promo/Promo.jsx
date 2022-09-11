@@ -2,8 +2,8 @@ import './Promo.css';
 
 const Promo = () => {
   return (
-    <div className='main__promo'>
-      <h1 className='main__title'>Учебный проект студента факультета Веб-разработки.</h1>
+    <div className='promo'>
+      <h1 className='promo__title'>Учебный проект студента факультета Веб-разработки.</h1>
     </div>
   )
 }

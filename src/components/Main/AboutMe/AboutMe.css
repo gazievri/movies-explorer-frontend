@@ -1,7 +1,4 @@
 .aboutme {
-  height: 1079px;
-  background: rgba(32, 32, 32, 1);
-  border: 1px solid red;
   color: rgba(255, 255, 255, 1);
 }
 
@@ -17,13 +14,59 @@
 }
 
 .aboutme__profile {
-  margin: 90px 70px 0;
+  margin: 90px 70px 101px;
   display: flex;
 }
 
+.aboutme__textblock {
+  display: flex;
+  flex-direction: column;
+}
 
+.aboutme__name {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
 
+.aboutme__info {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  mix-blend-mode: normal;
+  margin: 18px 0 26px;
+}
 
+.aboutme__text {
+  max-width: 600px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.aboutme__githab {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 99px 0 0;
+}
+
+.aboutme__githab:hover {
+  cursor: pointer;
+}
 
 .aboutme__photo {
   width: 270px;
@@ -31,6 +74,7 @@
   border-radius: 10px;
   object-fit: cover;
   margin-left: auto;
+  mix-blend-mode: normal;
 }
 
 

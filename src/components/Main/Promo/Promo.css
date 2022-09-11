@@ -1,9 +1,4 @@
-.main {
-  margin: 0;
-  padding: 0;
-}
-
-.main__promo {
+.promo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +10,7 @@
   background-size:  320px 320px;
 }
 
-.main__title {
+.promo__title {
   color: rgba(255, 255, 255, 1);
   font-family: 'Inter';
   font-style: normal;
