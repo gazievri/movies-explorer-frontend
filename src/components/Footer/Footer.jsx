@@ -7,8 +7,12 @@ const Footer = () => {
       <div className='footer__info'>
         <p className="footer__copyright">{`© ${new Date().getFullYear()}`}</p>
         <ul className='footer__list'>
-          <li className='footer__item'>Яндекс.Практикум</li>
-          <li className='footer__item'>Github</li>
+          <li className='footer__item'>
+            <a className='footer_link' href='https://practicum.yandex.ru/' target='_blank' rel="noreferrer">Яндекс.Практикум</a>
+          </li>
+          <li className='footer__item'>
+            <a className='footer_link' href='https://github.com/gazievri' target='_blank' rel="noreferrer">Github</a>
+          </li>
         </ul>
       </div>
     </div>

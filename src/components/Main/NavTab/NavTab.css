@@ -23,3 +23,8 @@
 .navtab__item:hover {
   cursor: pointer;
 }
+
+.navtab__link {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+}
