@@ -1,0 +1,15 @@
+.searchfilm {
+  margin: 0 70px 0;
+  padding: 60px 0 141px;
+  position: relative;
+}
+
+.searchfilm__input {
+  width: 100%;
+  border-radius: 40px;
+  height: 46px;
+  padding: 14px 22px;
+  box-sizing: border-box;
+  background-color: rgba(47, 47, 47, 1);
+  border: none;
+}

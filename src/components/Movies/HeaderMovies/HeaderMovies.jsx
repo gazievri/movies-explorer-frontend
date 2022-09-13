@@ -2,10 +2,16 @@ import './HeaderMovies.css';
 
 const HeaderMovies = () => {
   return (
-    <div className='header'>
-      <div className='header__logo'></div>
-      <div className='header__link'>Регистрация</div>
-      <button className='header__btn'>Войти</button>
+    <div className='headermovies'>
+      <div className='headermovies__logo'></div>
+      <nav className='headermovies__nav'>
+        <p className='headermovies__nav-item'>Фильмы</p>
+        <p className='headermovies__nav-item'>Сохранённые фильмы</p>
+      </nav>
+      <div className='headermovies__accountblock'>
+        <p className='headermovies__accountblock-text'>Аккаунт</p>
+        <div className='headermovies__accountblock-icon'></div>
+      </div>
   </div>
   )
 }
