@@ -1,7 +1,8 @@
 .searchfilm {
   margin: 0 70px 0;
-  padding: 60px 0 141px;
+  padding: 60px 0 0;
   position: relative;
+  border-bottom: 1px solid rgba(66, 66, 66, 1);
 }
 
 .searchfilm__input {
@@ -12,4 +13,28 @@
   box-sizing: border-box;
   background-color: rgba(47, 47, 47, 1);
   border: none;
+}
+
+.searchfilm__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 80px;
+  height: 34px;
+  border-radius: 48px;
+  background: rgba(66, 133, 244, 1);
+  top: 66px;
+  right: 6px;
+  border: none;
+}
+
+.searchfilm__btn:hover {
+  cursor: pointer;
+}
+
+.searchfilm__btn-icon {
+  background-image: url('../../../images/searchmovies-btn-icon.svg');
+  width: 22px;
+  height: 22px;
 }
