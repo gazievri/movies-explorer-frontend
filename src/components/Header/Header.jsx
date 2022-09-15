@@ -1,9 +1,10 @@
 import './Header.css';
+import Logo from '../Logo/Logo';
 
 const Header = () => {
   return (
     <div className='header'>
-      <div className='header__logo'></div>
+      <Logo />
       <div className='header__link'>Регистрация</div>
       <button className='header__btn'>Войти</button>
     </div>

@@ -7,13 +7,6 @@
   color: rgba(255, 255, 255, 1);
 }
 
-.headermovies__logo {
-  background-image: url('../../../images/header-logo.svg');
-  background-color: transparent;
-  width: 38px;
-  height: 38px;
-}
-
 .headermovies__nav {
   display: flex;
   column-gap: 16px;

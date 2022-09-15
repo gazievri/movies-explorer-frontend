@@ -1,0 +1,10 @@
+.logo {
+  background-image: url('../../images/header-logo.svg');
+  background-color: transparent;
+  width: 38px;
+  height: 38px;
+}
+
+.logo:hover {
+  cursor: pointer;
+}

@@ -4,11 +4,13 @@ import SearchForm from './SearchForm/SearchForm';
 import { useState, useEffect } from 'react';
 import { getMovies } from '../../utils/api';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import Footer from '../Footer/Footer';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [moviesPerPage, setMoviesPerPage] = useState(12);
   const [moviesToRender, setMoviesToRender] = useState([]);
+
 
   const handleShowMoreMovies = (num) => {
     setMoviesPerPage(num)
@@ -35,6 +37,7 @@ const Movies = () => {
       <HeaderMovies />
       <SearchForm />
       <MoviesCardList movies={moviesToRender} handleShowMoreMovies={handleShowMoreMovies} moviesPerPage={moviesPerPage} />
+      <Footer />
     </div>
   )
 }

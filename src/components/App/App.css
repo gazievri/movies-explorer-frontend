@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto 0;
   background: rgba(32, 32, 32, 1);
 }
