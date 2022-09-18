@@ -57,3 +57,20 @@
   padding-top: 21px;
   box-sizing: border-box;
 }
+
+.techs__link {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+  transition: 0.3s;
+}
+
+.techs__link:hover {
+  cursor: pointer;
+  opacity: 70%;
+}

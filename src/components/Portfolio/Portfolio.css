@@ -25,11 +25,17 @@
   margin: 0;
   display: flex;
   align-items: center;
+  transition: 0.3s;
 }
 
 .portfolio__item:not(:last-child) {
   padding: 0 0 19px;
   border-bottom: 1px solid rgba(66, 66, 66, 1);
+}
+
+.portfolio__item:hover {
+  cursor: pointer;
+  opacity: 70%;
 }
 
 .porfolio__link {
@@ -47,7 +53,7 @@
 }
 
 .portfolio__icon {
-  background-image: url('../../../images/portfolio-icon.svg');
+  background-image: url('../../images/portfolio-icon.svg');
   background-repeat: no-repeat;
   background-position: center;
   margin-left: auto;

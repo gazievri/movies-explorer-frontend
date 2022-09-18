@@ -5,4 +5,5 @@
   min-height: 100vh;
   margin: 0 auto 0;
   background: rgba(32, 32, 32, 1);
+  position: relative;
 }

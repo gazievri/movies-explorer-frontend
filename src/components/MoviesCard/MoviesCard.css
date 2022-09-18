@@ -39,7 +39,7 @@
 }
 
 .moviescard__icon {
-  background-image: url('../../../images/moviescard-icon.svg');
+  background-image: url('../../images/moviescard-icon.svg');
   width: 30px;
   height: 30px;
   margin-left: auto;
@@ -47,7 +47,7 @@
 }
 
 .moviescard__icon_active {
-  background-image: url('../../../images/moviescard-icon-active.svg');
+  background-image: url('../../images/moviescard-icon-active.svg');
 }
 
 .moviescard__icon:hover {

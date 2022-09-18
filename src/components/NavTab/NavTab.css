@@ -17,14 +17,22 @@
 
 .navtab__item {
   list-style-type: none;
-  text-decoration: underline;
+  transition: 0.3s;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
 }
 
 .navtab__item:hover {
   cursor: pointer;
+  opacity: 70%;
 }
 
 .navtab__link {
   text-decoration: none;
   color: rgba(255, 255, 255, 1);
+
 }

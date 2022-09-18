@@ -1,5 +1,5 @@
 import './AboutMe.css';
-import photo from '../../../images/photo-ruslan-min.jpg';
+import photo from '../../images/photo-ruslan-min.jpg';
 
 const AboutMe = () => {
   return (

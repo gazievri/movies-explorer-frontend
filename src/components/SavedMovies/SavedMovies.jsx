@@ -1,15 +1,16 @@
 import './SavedMovies.css';
-import HeaderMovies from '../Movies/HeaderMovies/HeaderMovies';
-import SearchForm from '../Movies/SearchForm/SearchForm';
-import Footer from '../Footer/Footer';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-const SavedMovies = () => {
+const SavedMovies = ({ movies }) => {
 
   return (
-    <div>
-      <HeaderMovies />
-      <SearchForm />
-      <Footer />
+    <div className='savedmovies'>
+      <SearchForm/>
+      {
+        !movies ? (<p className='savedmovies__empty-text'>Вы еще не сохранили не один фильм.</p>) :
+        <MoviesCardList movies={movies} />
+      }
     </div>
   )
 }

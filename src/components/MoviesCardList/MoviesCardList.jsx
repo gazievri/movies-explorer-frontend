@@ -5,8 +5,10 @@ import Preloader from '../Preloader/Preloader';
 const MoviesCardList = ({ movies, handleShowMoreMovies, moviesPerPage}) => {
 
   const handleClickMoreMovies = () => {
-    handleShowMoreMovies(moviesPerPage + 12);
+    handleShowMoreMovies(moviesPerPage + 3);
   }
+
+  console.log(movies)
 
   return (
     <div className='moviescardlist'>

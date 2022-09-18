@@ -1,5 +1,6 @@
 import './Register.css';
 import Logo from '../Logo/Logo';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   return (
@@ -23,7 +24,7 @@ const Register = () => {
       <span className='register__error'>Что-то пошло не так...</span>
 
       <button className='register__button'>Зарегистрироваться</button>
-      <p className='register__subtitle'>Уже зарегистрированы? <a href='#!' className='register__link'>Войти</a></p>
+      <p className='register__subtitle'>Уже зарегистрированы? <Link to='/signin' className='register__link'>Войти</Link></p>
     </form>
   )
 }

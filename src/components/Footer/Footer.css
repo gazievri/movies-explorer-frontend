@@ -1,6 +1,11 @@
 .footer {
   height: 172px;
   color: rgba(255, 255, 255, 1);
+  flex-shrink: 0;
+}
+
+.footer_status_hidden {
+  display: none;
 }
 
 .footer__subtitle {
@@ -26,6 +31,11 @@
 .footer__copyright {
   margin: 0;
   padding: 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
 }
 
 .footer__list {
@@ -40,7 +50,7 @@
   cursor: pointer;
 }
 
-.footer_link {
+.footer__link {
   text-decoration: none;
   color:rgba(255, 255, 255, 1);
   font-family: 'Inter';
@@ -48,4 +58,10 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
+  transition: 0.3s;
+}
+
+.footer__link:hover {
+  cursor: pointer;
+  opacity: 70%;
 }

@@ -3,8 +3,10 @@
   background-color: transparent;
   width: 38px;
   height: 38px;
+  transition: 0.3s;
 }
 
 .logo:hover {
   cursor: pointer;
+  opacity: 80%;
 }

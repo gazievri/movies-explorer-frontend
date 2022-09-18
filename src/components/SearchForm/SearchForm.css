@@ -13,6 +13,11 @@
   box-sizing: border-box;
   background-color: rgba(47, 47, 47, 1);
   border: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
 }
 
 .searchfilm__btn {
@@ -27,14 +32,16 @@
   top: 66px;
   right: 6px;
   border: none;
+  transition: 0.3s;
 }
 
 .searchfilm__btn:hover {
   cursor: pointer;
+  opacity: 80%;
 }
 
 .searchfilm__btn-icon {
-  background-image: url('../../../images/searchmovies-btn-icon.svg');
+  background-image: url('../../images/searchmovies-btn-icon.svg');
   width: 22px;
   height: 22px;
 }

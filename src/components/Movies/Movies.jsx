@@ -1,10 +1,8 @@
 import './Movies.css';
-import HeaderMovies from './HeaderMovies/HeaderMovies';
-import SearchForm from './SearchForm/SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 import { useState, useEffect } from 'react';
 import { getMovies } from '../../utils/api';
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import Footer from '../Footer/Footer';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -34,10 +32,8 @@ const Movies = () => {
 
   return (
     <div className='movies'>
-      <HeaderMovies />
       <SearchForm />
       <MoviesCardList movies={moviesToRender} handleShowMoreMovies={handleShowMoreMovies} moviesPerPage={moviesPerPage} />
-      <Footer />
     </div>
   )
 }
