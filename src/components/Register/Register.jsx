@@ -1,32 +1,104 @@
-import './Register.css';
-import Logo from '../Logo/Logo';
-import { Link } from 'react-router-dom';
+import "./Register.css";
+import Logo from "../Logo/Logo";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { REGEXP_EMAIL } from "../../utils/constants";
 
 const Register = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    mode: "all",
+  });
+
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data));
+  };
+
   return (
-    <form className='register'>
+    <form className="register" onSubmit={handleSubmit(onSubmit)}>
       <Logo />
-      <h2 className='register__greetings'>Добро пожаловать!</h2>
+      <h2 className="register__greetings">Добро пожаловать!</h2>
 
-      <span className='register__span'>Имя</span>
-      <input className='register__input' type='text'></input>
-      <hr className='register__line'></hr>
-      <span className='register__error'>Что-то пошло не так...</span>
+      <label className="register__label">
+        Имя
+        <input
+          className="register__input"
+          type="text"
+          {...register("name", {
+            required: "Это поле обязазательно для заполнения",
+            minLength: {
+              value: 2,
+              message: "Имя должно состоять минимум из двух букв",
+            },
+            maxLength: {
+              value: 30,
+              message: "Имя должно состоять не более чем из 30 букв",
+            },
+          })}
+        />
+      </label>
 
-      <span className='register__span'>E-mail</span>
-      <input className='register__input' type='email'></input>
-      <hr className='register__line'></hr>
-      <span className='register__error'>Что-то пошло не так...</span>
+      <hr className="register__line"></hr>
+      <span
+        className={`register__error ${errors.name && "register__error_active"}`}
+      >
+        {errors.name ? errors.name.message : "1"}
+      </span>
 
-      <span className='register__span'>Пароль</span>
-      <input className='register__input' type='password'></input>
-      <hr className='register__line'></hr>
-      <span className='register__error'>Что-то пошло не так...</span>
+      <label className="register__label">
+        E-mail
+        <input
+          className="register__input"
+          type="email"
+          {...register("email", {
+            required: "Это поле обязазательно для заполнения",
+            pattern: {
+              value: REGEXP_EMAIL,
+              message: "Здесь должен быть корректный e-mail",
+            },
+          })}
+        />
+      </label>
+      <hr className="register__line"></hr>
+      <span
+        className={`register__error ${
+          errors.email && "register__error_active"
+        }`}
+      >
+        {errors.email ? errors.email.message : "1"}
+      </span>
 
-      <button className='register__button'>Зарегистрироваться</button>
-      <p className='register__subtitle'>Уже зарегистрированы? <Link to='/signin' className='register__link'>Войти</Link></p>
+      <label className="register__label">
+        Пароль
+        <input
+          className="register__input"
+          type="password"
+          {...register("password", {
+            required: "Это поле обязазательно для заполнения",
+          })}
+        />
+      </label>
+      <hr className="register__line"></hr>
+      <span
+        className={`register__error ${
+          errors.password && "register__error_active"
+        }`}
+      >
+        {errors.password ? errors.password.message : "1"}
+      </span>
+
+      <button className="register__button">Зарегистрироваться</button>
+      <p className="register__subtitle">
+        Уже зарегистрированы?{" "}
+        <Link to="/signin" className="register__link">
+          Войти
+        </Link>
+      </p>
     </form>
-  )
-}
+  );
+};
 
 export default Register;

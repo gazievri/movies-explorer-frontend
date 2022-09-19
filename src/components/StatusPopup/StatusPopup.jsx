@@ -10,9 +10,6 @@ const StatusPopup = () => {
         <p className='statuspopup__message'>Текст ошибки</p>
         <button className='statuspopup__button' type='button'>Попробовать еще раз</button>
       </div>
-
-
-
     </div>
 
   )

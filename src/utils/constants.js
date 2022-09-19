@@ -53,7 +53,9 @@ const SAVED_MOVIE = { // Удалить позже
   }
 }
 
+const REGEXP_EMAIL = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 
-export { MOVIE_URL, SAVED_MOVIE };
+
+export { MOVIE_URL, SAVED_MOVIE, REGEXP_EMAIL };
 

@@ -4,11 +4,11 @@
 
 .moviescardlist__container {
   display: grid;
-  margin-bottom: 30px;
+  margin: 0 auto 30px;
   grid-template-columns: repeat(auto-fill, 364px);
   column-gap: 24px;
   row-gap: 30px;
-  justify-items: center;
+  justify-content: center;
 }
 
 .moviescardlist__btn {

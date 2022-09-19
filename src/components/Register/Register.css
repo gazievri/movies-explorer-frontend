@@ -15,18 +15,22 @@
   margin: 40px 0 40px;
 }
 
-.register__span {
+.register__label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
   color: rgba(139, 139, 139, 1);
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
-  margin: 0 0 6px
+  margin: 0 0 10px
 }
 
 .register__input {
-  margin: 0 0 10px;
+  margin: 0;
+  padding: 0;
   height: 17px;
   background: none;
   border: none;
@@ -48,7 +52,8 @@
 
 }
 
-.register__error{
+.register__error {
+  visibility: hidden;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -56,6 +61,10 @@
   line-height: 12px;
   margin: 6px 0 6px;
   color: rgba(238, 52, 101, 1);
+}
+
+.register__error_active {
+  visibility: visible;
 }
 
 .register__button {
