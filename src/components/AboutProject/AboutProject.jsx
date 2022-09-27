@@ -2,7 +2,7 @@ import './AboutProject.css';
 
 const AboutProject = () => {
   return (
-    <div className='aboutproject' id="aboutproject">
+    <section className='aboutproject' id="aboutproject">
       <h2 className='aboutproject__title'>О проекте</h2>
       <ul className='aboutproject__list'>
         <li className='aboutproject__item'>
@@ -24,7 +24,7 @@ const AboutProject = () => {
           <p className='aboutproject__graph-second-span'>Front-end</p>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

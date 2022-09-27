@@ -19,3 +19,9 @@
 .header_status_on-movies {
   background: rgba(32, 32, 32, 1);
 }
+
+@media (max-width: 891px) {
+  .header {
+    padding: 18px 30px;
+  }
+}

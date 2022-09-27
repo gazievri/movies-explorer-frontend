@@ -44,3 +44,9 @@
   line-height: 18px;
   color: rgba(255, 255, 255, 1);
 }
+
+@media (max-width: 891px) {
+  .filtercheckbox   {
+    margin: 42px 0 51px;
+  }
+}

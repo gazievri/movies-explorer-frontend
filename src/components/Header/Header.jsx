@@ -4,9 +4,10 @@ import Navigation from "../Navigation/Navigation";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, handlePopupOpen }) => {
   const { pathname } = useLocation();
   const [selector, setSelector] = useState();
+
 
 useEffect(() => {
   switch (pathname) {
@@ -29,7 +30,7 @@ useEffect(() => {
 }, [pathname])
 
   return (
-    <div
+    <header
       className={
         !isLoggedIn
           ? `header ${selector}`
@@ -37,8 +38,8 @@ useEffect(() => {
       }
     >
       <Logo />
-      <Navigation isLoggedIn={isLoggedIn} />
-    </div>
+      <Navigation isLoggedIn={isLoggedIn} handlePopupOpen={handlePopupOpen } />
+    </header>
   );
 };
 

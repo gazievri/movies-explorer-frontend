@@ -30,3 +30,14 @@
 .moviescardlist__btn:hover {
   cursor: pointer;
 }
+
+@media (max-width: 891px) {
+  .moviescardlist {
+    margin: 70px 30px 80px;
+  }
+
+  .moviescardlist__container {
+    grid-template-columns: repeat(auto-fill, 339px);
+    row-gap: 36px;
+  }
+}

@@ -13,7 +13,7 @@ const Footer = () => {
   }, [pathname])
 
   return (
-    <div className={selector}>
+    <footer className={selector}>
       <p className='footer__subtitle'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
       <div className='footer__info'>
         <p className="footer__copyright">{`© ${new Date().getFullYear()}`}</p>
@@ -26,7 +26,7 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </footer>
   )
 }
 

@@ -3,7 +3,7 @@ import photo from '../../images/photo-ruslan-min.jpg';
 
 const AboutMe = () => {
   return (
-    <div className='aboutme' id='aboutme'>
+    <section className='aboutme' id='aboutme'>
       <h2 className='aboutme__title'>Студент</h2>
       <div className='aboutme__profile'>
         <div className='aboutme__textblock'>
@@ -14,7 +14,7 @@ const AboutMe = () => {
         </div>
         <img className='aboutme__photo' src={photo} alt='Портрет Руслана Газиева'/>
       </div>
-    </div>
+    </section>
   )
 }
 

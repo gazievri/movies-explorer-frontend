@@ -92,3 +92,18 @@
   height: 26px;
   margin: 0;
 }
+
+.navigation__burger {
+  background-color: transparent;
+  background-image: url('../../images/header-burger.svg');
+  background-position: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  transition: 0.3s;
+}
+
+.navigation__burger:hover {
+  cursor: pointer;
+  opacity: 70%;
+}

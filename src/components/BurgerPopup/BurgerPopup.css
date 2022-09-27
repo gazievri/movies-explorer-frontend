@@ -1,0 +1,100 @@
+.burgerpopup {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  display: none;
+}
+
+.burgerpopup_status_opened {
+  display: block;
+}
+
+.burgerpopup__container {
+  margin-left: auto;
+  width: 67.7%;
+  height: 100%;
+  background-color: rgba(32, 32, 32, 1);
+  opacity: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.burgerpopup__exit-icon {
+  background-image: url('../../images/popup-close.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 22.4px;
+  right: 22.4px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  transition: 0.3s;
+}
+
+.burgerpopup__exit-icon:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.burgerpopup__nav {
+  display: flex;
+  flex-direction: column;
+  margin: 159px auto 99.5px;
+  row-gap: 28px;
+  height: 100vh;
+}
+
+.burgerpopup__nav-item {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  transition: 0.3s;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.burgerpopup__nav-item:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.burgerpopup__nav-item_active {
+  text-decoration: underline;
+}
+
+.burgerpopup__accountblock {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-self: center;
+  align-items: center;
+  column-gap: 7px;
+}
+
+.burgerpopup__accountblock-text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+
+.burgerpopup__accountblock-icon {
+  background-image: url('../../images/movie-account-icon.svg');
+  background-color: rgba(49, 49, 49, 1);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50px;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+}

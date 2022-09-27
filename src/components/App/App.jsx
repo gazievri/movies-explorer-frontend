@@ -13,9 +13,12 @@ import StatusPopup from '../StatusPopup/StatusPopup';
 import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { SAVED_MOVIE } from '../../utils/constants';
+import { useEffect } from 'react';
+import BurgerPopup from '../BurgerPopup/BurgerPopup';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isPopupOpened, setIsPopupOpned] = useState(false);
 
   const movies = [SAVED_MOVIE]
 
@@ -31,9 +34,15 @@ const App = () => {
     navigate('/');
   }
 
+  //Обработка открытия попапа бургер меню
+  const handlePopupOpen = () => {
+    setIsPopupOpned(!isPopupOpened)
+  }
+
+
   return(
     <div className='app'>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} handlePopupOpen={handlePopupOpen} />
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/movies' element={<Movies />} />
@@ -45,6 +54,7 @@ const App = () => {
       </Routes>
       <Footer />
       <StatusPopup />
+      <BurgerPopup isPopupOpened={isPopupOpened} handlePopupOpen={handlePopupOpen } />
     </div>
   )
 }
