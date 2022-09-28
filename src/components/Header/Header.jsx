@@ -30,16 +30,21 @@ useEffect(() => {
 }, [pathname])
 
   return (
-    <header
-      className={
-        !isLoggedIn
-          ? `header ${selector}`
-          : `header header_status_logged-in ${selector}`
-      }
-    >
-      <Logo />
-      <Navigation isLoggedIn={isLoggedIn} handlePopupOpen={handlePopupOpen } />
+    <header className={pathname === '/' ? 'header' : ""}>
+      <div
+        className={
+          !isLoggedIn
+            ? `header__wrapper ${selector}`
+            : `header__wrapper header_status_logged-in ${selector}`
+        }
+      >
+        <Logo />
+        <Navigation isLoggedIn={isLoggedIn} handlePopupOpen={handlePopupOpen } />
+      </div>
+
     </header>
+
+
   );
 };
 

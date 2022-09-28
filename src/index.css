@@ -1,1 +1,5 @@
 @import url(./vendor/normalize.css);
+
+body {
+  background-color: rgba(34, 34, 34, 1);
+}

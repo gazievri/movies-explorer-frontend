@@ -1,7 +1,13 @@
 .techs {
-  margin: 0 70px 0;
-  padding: 100px 0;
+  background-color: rgba(39, 39, 39, 1);
+}
+
+.techs__wrapper {
+  max-width: 1280px;
+  margin: 0 auto 0;
+  padding: 100px 70px;
   color: rgba(255, 255, 255, 1);
+  box-sizing: border-box;
 }
 
 .techs__title {
@@ -98,7 +104,6 @@
   }
 }
 
-
 @media (max-width: 420px) {
   .techs {
     margin: 0 18px 0;
@@ -129,9 +134,8 @@
     display: flex;
     flex-wrap: wrap;
     row-gap: 10px;
-    justify-content:flex-start;
+    justify-content: flex-start;
     margin: 0 auto 0;
     max-width: 190px;
-
   }
 }

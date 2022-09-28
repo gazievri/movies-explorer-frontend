@@ -1,7 +1,9 @@
 .aboutproject {
   color: rgba(255, 255, 255, 1);
-  margin: 0 70px;
-  padding: 110px 0;
+  margin: 0 auto;
+  padding: 110px 70px;
+  max-width: 1280px;
+  box-sizing: border-box;
 }
 
 .aboutproject__title {

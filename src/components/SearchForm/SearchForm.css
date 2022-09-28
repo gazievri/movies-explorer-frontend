@@ -1,8 +1,10 @@
 .searchfilm {
-  margin: 0 70px 0;
-  padding: 60px 0 0;
+  margin: 0 auto 0;
+  padding: 60px 70px 0;
   position: relative;
   border-bottom: 1px solid rgba(66, 66, 66, 1);
+  max-width: 1280px;
+  box-sizing: border-box;
 }
 
 .searchfilm__input {
@@ -30,7 +32,7 @@
   border-radius: 48px;
   background: rgba(66, 133, 244, 1);
   top: 66px;
-  right: 6px;
+  right: 78px;
   border: none;
   transition: 0.3s;
 }
@@ -54,6 +56,7 @@
 
   .searchfilm__btn {
     top: 86px;
+    right: 6px;
   }
 }
 
