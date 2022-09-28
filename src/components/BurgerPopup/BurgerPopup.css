@@ -98,3 +98,11 @@
   height: 26px;
   margin: 0;
 }
+
+
+@media (max-width: 420px) {
+  .burgerpopup__container {
+    width: 100%;
+  }
+
+}

@@ -33,3 +33,23 @@
   cursor: pointer;
   opacity: 70%;
 }
+
+@media (max-width: 420px) {
+  .pagenotfound__title {
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 97px;
+  }
+
+  .pagenotfound__subtitle {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .pagenotfound__back {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+}

@@ -36,3 +36,9 @@
   color: rgba(255, 255, 255, 1);
 
 }
+
+@media (max-width: 420px) {
+  .navtab__list {
+    column-gap: 24px;
+  }
+}

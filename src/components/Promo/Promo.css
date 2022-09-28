@@ -22,3 +22,21 @@
   height: 116px;
   padding-bottom: 40px;
 }
+
+@media (max-width: 420px) {
+
+  .promo {
+    background-size:  248px 248px;
+    background-position: center 140px;
+    height: 570px;
+  }
+
+  .promo__title {
+    font-size: 31px;
+    line-height: 39px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    width: 300px;
+    height: 117px;
+  }
+}

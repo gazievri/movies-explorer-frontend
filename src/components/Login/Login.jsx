@@ -62,7 +62,7 @@ const Login = ({ handleLogin }) => {
 
       <button className="login__button">Войти</button>
       <p className="login__subtitle">
-        Уже зарегистрированы?{" "}
+        Еще не зарегистрированы?{" "}
         <Link to="/signup" className="login__link">
           Регистрация
         </Link>

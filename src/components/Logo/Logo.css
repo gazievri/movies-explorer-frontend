@@ -10,3 +10,9 @@
   cursor: pointer;
   opacity: 80%;
 }
+
+@media (max-width: 420px) {
+  .logo {
+    margin: 0 auto 0;
+  }
+}

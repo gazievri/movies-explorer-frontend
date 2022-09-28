@@ -7,6 +7,7 @@
   line-height: 16px;
   color: rgba(255, 255, 255, 1);
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .navigation__link:hover {
@@ -106,4 +107,17 @@
 .navigation__burger:hover {
   cursor: pointer;
   opacity: 70%;
+}
+
+@media (max-width: 420px) {
+  .navigation__link {
+    font-size: 10px;
+    margin-right: 14px;
+  }
+
+  .navigation__btn {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+  }
 }

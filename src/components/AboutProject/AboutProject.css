@@ -109,3 +109,80 @@
   text-align: center;
   color: rgba(139, 139, 139, 1);
 }
+
+
+@media (max-width: 891px) {
+  .aboutproject {
+    margin: 0 50px;
+    padding: 90px 0;
+  }
+
+  .aboutproject__list {
+    display: flex;
+    column-gap: 30px;
+    margin: 70px 0 93px;
+  }
+}
+
+
+
+@media (max-width: 420px) {
+  .aboutproject {
+    color: rgba(255, 255, 255, 1);
+    margin: 0 18px;
+    padding: 70px 0;
+  }
+
+  .aboutproject__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .aboutproject__list {
+    flex-direction: column;
+    margin: 60px 0 60px;
+    row-gap: 56px;
+  }
+
+  .aboutproject__item-title {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 16px 0;
+  }
+
+  .aboutproject__item-text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutproject__graph-first  {
+    width:100px;
+  }
+
+  .aboutproject__graph-first-text {
+    font-size: 11px;
+    line-height: 13px;
+    height: 35px;
+    margin: 0 0 10px 0;
+    padding-top: 11px;
+  }
+
+  .aboutproject__graph-first-span {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .aboutproject__graph-second-text {
+    font-size: 11px;
+    line-height: 13px;
+    height: 35px;
+    margin: 0 0 10px 0;
+    padding-top: 11px;
+  }
+
+  .aboutproject__graph-second-span {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

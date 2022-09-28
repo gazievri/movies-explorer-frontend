@@ -82,3 +82,14 @@
     height: 190px;
   }
 }
+
+@media (max-width: 420px) {
+  .moviescard {
+    width: 300px;
+    height: 236px;
+  }
+
+  .moviescard__image {
+    height: 168px;
+  }
+}

@@ -129,3 +129,28 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
   background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);
 }
+
+@media (max-width: 420px) {
+  .login  {
+    width: 260px;
+    margin: 56px auto 0;
+  }
+
+  .login__greetings {
+    align-self: center;
+  }
+
+  .login__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .login__subtitle {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .login__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
