@@ -1,5 +1,7 @@
 .techs {
   background-color: rgba(39, 39, 39, 1);
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .techs__wrapper {
@@ -14,8 +16,6 @@
   margin: 0;
   padding-bottom: 23px;
   border-bottom: 1px solid rgba(218, 218, 218, 1);
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 22px;
   line-height: 27px;
@@ -23,8 +23,6 @@
 }
 
 .techs__subtitle {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
@@ -34,8 +32,6 @@
 }
 
 .techs__text {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -67,8 +63,6 @@
 .techs__link {
   color: rgba(255, 255, 255, 1);
   text-decoration: none;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -115,8 +109,6 @@
     margin: 0 auto 0;
   }
 }
-
-
 
 @media (max-width: 420px) {
   .techs__wrapper  {

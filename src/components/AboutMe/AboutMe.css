@@ -4,14 +4,14 @@
   padding: 0 70px;
   max-width: 1280px;
   box-sizing: border-box;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .aboutme__title {
   margin: 110px 0 0;
   padding-bottom: 23px;
   border-bottom: 1px solid rgba(218, 218, 218, 1);
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 22px;
   line-height: 27px;
@@ -28,8 +28,6 @@
 }
 
 .aboutme__name {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
@@ -38,8 +36,6 @@
 }
 
 .aboutme__info {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 20px;
@@ -49,8 +45,6 @@
 
 .aboutme__text {
   max-width: 600px;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -60,8 +54,6 @@
 .aboutme__githab {
   text-decoration: none;
   color: rgba(255, 255, 255, 1);
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -123,7 +115,6 @@
 }
 
 @media (max-width: 550px) {
-
   .aboutme {
     padding: 0 14px;
   }
@@ -166,4 +157,3 @@
   }
 
 }
-

@@ -1,9 +1,11 @@
 .burgerpopup {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   display: none;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .burgerpopup_status_opened {
@@ -43,17 +45,17 @@
 .burgerpopup__nav {
   display: flex;
   flex-direction: column;
-  margin: 159px auto 99.5px;
+  margin: 0 auto 0;
   row-gap: 28px;
   height: 100vh;
+  box-sizing: border-box;
+  padding: 159px 0 90px;
 }
 
 .burgerpopup__nav-item {
   color: rgba(255, 255, 255, 1);
   text-decoration: none;
   transition: 0.3s;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
@@ -79,8 +81,6 @@
 }
 
 .burgerpopup__accountblock-text {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 12px;
@@ -99,10 +99,12 @@
   margin: 0;
 }
 
-
 @media (max-width: 420px) {
   .burgerpopup__container {
     width: 100%;
   }
 
+  .burgerpopup__nav {
+    padding: 144px 0 46px;
+  }
 }

@@ -5,6 +5,8 @@
   border-bottom: 1px solid rgba(66, 66, 66, 1);
   max-width: 1280px;
   box-sizing: border-box;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .searchfilm__input {
@@ -15,8 +17,6 @@
   box-sizing: border-box;
   background-color: rgba(47, 47, 47, 1);
   border: none;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 17px;

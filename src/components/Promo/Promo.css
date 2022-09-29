@@ -8,12 +8,12 @@
   background-repeat: no-repeat;
   background-position: center 82px;
   background-size:  320px 320px;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .promo__title {
   color: rgba(255, 255, 255, 1);
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
@@ -24,7 +24,6 @@
 }
 
 @media (max-width: 420px) {
-
   .promo {
     background-size:  248px 248px;
     background-position: center 140px;

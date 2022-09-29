@@ -5,6 +5,8 @@
   display: flex;
   align-items: center;
   background-size: 100vw;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .navtab__list {
@@ -18,8 +20,6 @@
 .navtab__item {
   list-style-type: none;
   transition: 0.3s;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
@@ -34,7 +34,6 @@
 .navtab__link {
   text-decoration: none;
   color: rgba(255, 255, 255, 1);
-
 }
 
 @media (max-width: 420px) {

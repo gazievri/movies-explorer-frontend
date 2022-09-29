@@ -5,8 +5,9 @@
   column-gap: 12px;
   justify-content: center;
   margin: 42px 0 70px;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
-
 
 .filtercheckbox__handler {
   width: 36px;
@@ -34,11 +35,8 @@
   margin-left: auto;
 }
 
-
 .filtercheckbox__title {
   margin: 0;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;

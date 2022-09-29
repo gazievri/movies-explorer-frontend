@@ -1,6 +1,8 @@
 .moviescardlist {
   margin: 70px auto 80px;
   padding: 0 70px;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .moviescardlist__container {
@@ -22,8 +24,6 @@
   border-radius: 6px;
   background-color: rgba(47, 47, 47, 1);
   border: none;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;

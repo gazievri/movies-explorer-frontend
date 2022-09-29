@@ -3,12 +3,12 @@
   margin: 0 auto 0;
   padding: 0 70px 125px;
   box-sizing: border-box;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .portfolio__title {
   margin: 0 0 50px;
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
@@ -42,13 +42,14 @@
 }
 
 .portfolio__link {
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 50px;
   color: rgba(255, 255, 255, 1);
   text-decoration: none;
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 
 .porfolio__link:hover {
@@ -67,7 +68,6 @@
 .portfolio__icon:hover {
   cursor: pointer;
 }
-
 
 @media (max-width: 891px) {
   .portfolio {

@@ -6,11 +6,12 @@
   display: flex;
   align-items: center;
   padding: 18px 70px;
-  background-color: rgba(7, 48, 66, 1);
   max-width: 1280px;
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
 }
 
 .header_status_hidden {

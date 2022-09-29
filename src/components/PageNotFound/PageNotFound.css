@@ -1,6 +1,6 @@
 .pagenotfound {
   color: rgba(255, 255, 255, 1);
-  font-family: 'Inter';
+  font-family: 'Inter', 'Arial', serif;
   font-style: normal;
   font-weight: 400;
   display: flex;
@@ -51,5 +51,4 @@
     font-size: 12px;
     line-height: 15px;
   }
-
 }
