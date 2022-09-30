@@ -1,0 +1,72 @@
+.searchfilm {
+  margin: 0 auto 0;
+  padding: 60px 70px 0;
+  position: relative;
+  border-bottom: 1px solid rgba(66, 66, 66, 1);
+  max-width: 1280px;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
+}
+
+.searchfilm__input {
+  width: 100%;
+  border-radius: 40px;
+  height: 46px;
+  padding: 14px 22px;
+  box-sizing: border-box;
+  background-color: rgba(47, 47, 47, 1);
+  border: none;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.searchfilm__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 80px;
+  height: 34px;
+  border-radius: 48px;
+  background: rgba(66, 133, 244, 1);
+  top: 66px;
+  right: 78px;
+  border: none;
+  transition: 0.3s;
+}
+
+.searchfilm__btn:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.searchfilm__btn-icon {
+  background-image: url('../../images/searchmovies-btn-icon.svg');
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 891px) {
+  .searchfilm  {
+    margin: 0 30px 0;
+    padding: 80px 0 0;
+  }
+
+  .searchfilm__btn {
+    top: 86px;
+    right: 6px;
+  }
+}
+
+@media (max-width: 420px) {
+  .searchfilm  {
+    margin: 0 14px 0;
+    padding: 80px 0 0;
+  }
+
+  .searchfilm__btn {
+    top: 86px;
+  }
+}

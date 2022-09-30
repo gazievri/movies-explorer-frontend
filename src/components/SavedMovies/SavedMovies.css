@@ -1,0 +1,14 @@
+.savedmovies {
+  flex-grow: 1;
+}
+
+.savedmovies__empty-text {
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}

@@ -1,0 +1,159 @@
+.aboutme {
+  color: rgba(255, 255, 255, 1);
+  margin: 0 auto 0;
+  padding: 0 70px;
+  max-width: 1280px;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Arial', serif;
+  font-style: normal;
+}
+
+.aboutme__title {
+  margin: 110px 0 0;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgba(218, 218, 218, 1);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+}
+
+.aboutme__profile {
+  margin: 90px 0 101px;
+  display: flex;
+}
+
+.aboutme__textblock {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutme__name {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.aboutme__info {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  mix-blend-mode: normal;
+  margin: 18px 0 26px;
+}
+
+.aboutme__text {
+  max-width: 600px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.aboutme__githab {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 99px 0 0;
+  transition: 0.3s;
+}
+
+.aboutme__githab:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.aboutme__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-left: auto;
+  mix-blend-mode: normal;
+}
+
+@media (max-width: 891px) {
+  .aboutme {
+    padding: 0 50px;
+  }
+
+  .aboutme__title {
+    margin: 90px 0 0;
+  }
+
+  .aboutme__profile {
+    margin: 66px 0 91px;
+    column-gap: 49px;
+  }
+
+  .aboutme__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .aboutme__info {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .aboutme__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .aboutme__photo {
+    width: 255px;
+    height: 307px;
+  }
+
+  .aboutme__githab {
+    margin: 87px 0 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .aboutme {
+    padding: 0 14px;
+  }
+
+  .aboutme__title {
+    margin: 70px 0 0;
+    padding-bottom: 28px;
+  }
+
+  .aboutme__profile {
+    flex-direction: column-reverse;
+    row-gap: 40px;
+    margin: 60px 0 101px;
+  }
+
+  .aboutme__photo {
+    width: 292px;
+    height: 352px;
+    margin: 0 auto 0;
+  }
+
+  .aboutme__name {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .aboutme__info {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 20px 0 20px;
+  }
+
+  .aboutme__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutme__githab {
+    margin: 40px 0 0;
+  }
+
+}
