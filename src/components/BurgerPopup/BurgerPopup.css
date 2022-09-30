@@ -6,6 +6,8 @@
   display: none;
   font-family: 'Inter', 'Arial', serif;
   font-style: normal;
+
+  position: fixed;
 }
 
 .burgerpopup_status_opened {
