@@ -2,7 +2,7 @@
   color: rgba(255, 255, 255, 1);
   max-width: 1280px;
   width: 100%;
-  margin: 0 auto;
+  margin: auto auto 0;
   padding: 0 70px;
   box-sizing: border-box;
   font-family: 'Inter', 'Arial', serif;

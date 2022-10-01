@@ -17,18 +17,21 @@ import { useEffect } from "react";
 import BurgerPopup from "../BurgerPopup/BurgerPopup";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isPopupOpened, setIsPopupOpned] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Отвечает за авторизацию
+  const [isPopupOpened, setIsPopupOpned] = useState(false); // Отвечает за открытие попапа
 
   const movies = [SAVED_MOVIE];
 
   let navigate = useNavigate();
 
+
+  // Обработка авторизации
   const handleLogin = () => {
     setIsLoggedIn(true);
     navigate("/");
   };
 
+  // Обработка де-авторизации
   const handleLogout = () => {
     setIsLoggedIn(false);
     navigate("/");

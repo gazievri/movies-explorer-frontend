@@ -5,6 +5,11 @@
   font-style: normal;
 }
 
+.moviescardlist__notfound-message {
+  color: rgba(238, 52, 101, 1);
+  text-align: center;
+}
+
 .moviescardlist__container {
   display: grid;
   margin: 0 auto 30px;
@@ -57,4 +62,8 @@
     grid-template-columns: repeat(auto-fill, 300px);
     row-gap: 16px;
   }
+}
+
+.test {
+  flex-grow: 1;
 }
