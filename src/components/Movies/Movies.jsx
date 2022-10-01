@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { getMovies } from '../../utils/MoviesApi';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import filterMovies from '../../utils/FilterMovies';
+import Preloader from '../Preloader/Preloader';
 
 const Movies = () => {
   // Извлекаю базу фильмов из LocalStorage, проверяю на длинну и возращую значение для обновления стейта movies
@@ -43,7 +44,7 @@ const Movies = () => {
       .catch(err => console.log(err))
     }
 
-  
+
 
   }
 
@@ -78,9 +79,12 @@ const Movies = () => {
   return (
     <div className='movies'>
       <SearchForm handleMoviesRequest={handleMoviesRequest} keyWords={keyWords} isCheckBoxActive={isCheckBoxActive} handleCheckBoxClick={handleCheckBoxClick} setKeyWords={setKeyWords} />
+      {
+        movies.length === 0 ? <Preloader /> :
 
       <MoviesCardList movies={moviesToRender} handleShowMoreMovies={handleShowMoreMovies} moviesPerPage={moviesPerPage} />
 
+}
     </div>
   )
 }

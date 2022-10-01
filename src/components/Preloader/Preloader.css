@@ -48,6 +48,8 @@
     z-index: 10;
     padding: 20px;
     box-sizing: border-box;
+    margin-top: 10rem;
+
 }
 
 .preloader__container {
@@ -62,7 +64,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: #FF6838;
+    background: rgba(47, 47, 47, 1);
     border-radius: 50px;
 }
 
@@ -84,6 +86,6 @@
 
 .preloader__round::before {
     z-index: 10;
-    background: #FF6838;
+    background: rgba(47, 47, 47, 1);
     animation: preloader-inside-red 1s ease-in-out infinite;
 }
