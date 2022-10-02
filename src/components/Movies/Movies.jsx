@@ -7,6 +7,8 @@ import filterMovies from '../../utils/FilterMovies';
 import Preloader from '../Preloader/Preloader';
 
 const Movies = () => {
+
+  const [screenWidth, setScreenWidth] = useState(window.screen.width)
   // Извлекаю базу фильмов из LocalStorage, проверяю на длинну и возращую значение для обновления стейта movies
   const extractMoviesLocal = () => {
     let moviesLocal = JSON.parse(localStorage.getItem('movies'));
@@ -23,19 +25,41 @@ const Movies = () => {
   }
 
   const [movies, setMovies] = useState(extractMoviesLocal());
-
   const [moviesToRender, setMoviesToRender] = useState([]);
-  const [moviesPerPage, setMoviesPerPage] = useState(12);
   const [keyWords, setKeyWords] = useState(localStorage.getItem('keyWords') ? localStorage.getItem('keyWords') : '' );
-  const [isCheckBoxActive, setIsCheckBoxActive] = useState(extractCheckBoxStatus())
+  const [isCheckBoxActive, setIsCheckBoxActive] = useState(extractCheckBoxStatus());
+  const [moviesPerPage, setMoviesPerPage] = useState(12);
+  const [moviesAddToPage, setMoviesAddToPage] = useState(3);
 
-  const handleShowMoreMovies = (num) => {
-    setMoviesPerPage(num)
+
+
+  // Определение ширины экрана и установление количества отображемых фильмов на страинце и количества добавляемых фильмов при нажатие клавиши Еще
+  const checkWindowWidth = () => {
+    const screenWidth = window.screen.width;
+
+    if (screenWidth >= 1280 ) {
+      setMoviesPerPage(12);
+      setMoviesAddToPage(3);
+      console.log(12)
+    } else if (screenWidth < 1280 && screenWidth > 761) {
+      setMoviesPerPage(8);
+      setMoviesAddToPage(2);
+      console.log(8)
+    } else {
+      setMoviesPerPage(5);
+      setMoviesAddToPage(2);
+      console.log(5)
+    }
   }
+
+  // Слидит за размерами экрана и запускат функцию checkWindowWidth с задержкой
+  window.onresize = (event) => {
+    setTimeout(checkWindowWidth, 50);
+  };
 
   // Обработка запроса на поиск фильма
   const handleMoviesRequest = () => {
-    console.log(movies)
+    setMoviesPerPage(12);
     if (movies.length < 1) {
       getMovies()
       .then(data => {
@@ -43,12 +67,7 @@ const Movies = () => {
       })
       .catch(err => console.log(err))
     }
-
-
-
   }
-
-
 
   // Обратботка нажатия на чекбокс для коротко метражных фильмов
   const handleCheckBoxClick = () => {
@@ -70,11 +89,14 @@ const Movies = () => {
     localStorage.setItem('checkBox', isCheckBoxActive);
   }, [isCheckBoxActive]);
 
-
+  // Изменнение списка фильмов для рендеринга в зависимости от запроса и фильтров
   useEffect(() => {
-    setMoviesToRender(filterMovies(movies, keyWords, isCheckBoxActive));
-  }, [keyWords, isCheckBoxActive])
+    const filteredMovies = filterMovies(movies, keyWords, isCheckBoxActive)
+    setMoviesToRender(filteredMovies);
+  }, [keyWords, isCheckBoxActive, movies])
 
+
+console.log('moviesToRender)', moviesToRender);
 
   return (
     <div className='movies'>
@@ -82,7 +104,7 @@ const Movies = () => {
       {
         movies.length === 0 ? <Preloader /> :
 
-      <MoviesCardList movies={moviesToRender} handleShowMoreMovies={handleShowMoreMovies} moviesPerPage={moviesPerPage} />
+      <MoviesCardList moviesToRender={moviesToRender} moviesPerPage={moviesPerPage} moviesAddToPage={moviesAddToPage} setMoviesPerPage={setMoviesPerPage} />
 
 }
     </div>

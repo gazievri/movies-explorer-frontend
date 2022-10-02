@@ -1,50 +1,52 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import Preloader from "../Preloader/Preloader";
 import { useState, useEffect } from "react";
 
-const MoviesCardList = ({ movies, handleShowMoreMovies, moviesPerPage }) => {
+const MoviesCardList = ({ moviesToRender, moviesPerPage, moviesAddToPage, setMoviesPerPage }) => {
+  const [moviesStartPack, setMoviesPack] = useState();
+  const [isBtnHidden, setBtnHidden] = useState(false);
 
-  // Функция определяет ширину экрана и на основании ее определяет сколько карточек добавлять при нажатие на кнопку Еще
   const handleClickMoreMovies = () => {
-    // Определение ширины экрана
-    const containerInnerWidth = document.querySelector(
-      ".moviescardlist__container"
-    ).offsetWidth;
-
-    let numAddMovies;
-
-    if (containerInnerWidth < 1140 && containerInnerWidth > 701) {
-      numAddMovies = 2;
-    } else if (containerInnerWidth <= 701) {
-      numAddMovies = 1;
-    } else {
-      numAddMovies = 3;
+    if (moviesToRender.length > moviesPerPage) {
+      setMoviesPerPage(moviesPerPage + moviesAddToPage)
     }
+  }
 
-    handleShowMoreMovies(moviesPerPage + numAddMovies);
-  };
+  console.log(moviesPerPage);
+
+  // При обновлении списка фильмов или количества фильмов на страницу обновляет количество фильмов в списке для отображения в том числе после нажатия клавиши Еще
+  useEffect(() => {
+    setMoviesPack(moviesToRender.slice(0, moviesPerPage))
+  }, [moviesToRender, moviesPerPage])
+
+  useEffect(() => {
+    moviesToRender.length > moviesPerPage ? setBtnHidden(false) : setBtnHidden(true);
+  }, [moviesToRender, moviesStartPack, moviesPerPage])
 
   return (
-    <div className="moviescardlist">
-      {movies.length === 0 ? (
-        <div className='moviescardlist__notfound-message'>Ничего не найдено...</div>
-      ) : (
+    <div className={ `moviescardlist` } >
+      {moviesToRender.length !== 0 ?  (
         <>
           <div className="moviescardlist__container">
-            {movies.map((movie) => (
+            {moviesStartPack.map((movie) => (
               <MoviesCard key={movie.id} movie={movie} />
             ))}
           </div>
 
           <button
-            className="moviescardlist__btn"
+            className={`moviescardlist__btn ${isBtnHidden ? 'moviescardlist__btn_hidden' : ''}`}
             type="button"
             onClick={handleClickMoreMovies}
           >
             Ещё
           </button>
         </>
+      )
+
+      :
+
+      (
+        <div className='moviescardlist__notfound-message'>Ничего не найдено...</div>
       )}
     </div>
   );

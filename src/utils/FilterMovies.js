@@ -1,6 +1,5 @@
 const filterMovies = (movies, keyWords, isCheckBoxActive) => {
 
-
   let filteredMovies = movies.filter(item => item.nameRU.toLowerCase().includes(keyWords.toLowerCase()))
 
   if (isCheckBoxActive) {

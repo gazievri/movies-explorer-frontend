@@ -37,6 +37,10 @@
   text-align: center;
 }
 
+.moviescardlist__btn_hidden {
+  visibility: hidden;
+}
+
 .moviescardlist__btn:hover {
   cursor: pointer;
 }

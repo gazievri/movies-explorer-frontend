@@ -25,7 +25,7 @@ const SearchForm = ({ handleMoviesRequest, keyWords = '', isCheckBoxActive, hand
     }
   }
 
-  // Убирает текст ошибки как только в поле поиска что-то ввeли, обновляет стейт searchText
+  // Убирает текст ошибки как только в поле поиска что-то ввeли, обновляет стейт text
   const handleChange = (e) => {
     const value = e.target.value
     setText(value);
