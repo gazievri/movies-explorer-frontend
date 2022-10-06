@@ -12,7 +12,7 @@ const BurgerPopup = ({ isPopupOpened, handlePopupOpen }) => {
     <div
       className={`burgerpopup ${
         isPopupOpened ? "burgerpopup_status_opened" : ""
-      }`}
+      }`} 
     >
       <div className="burgerpopup__container">
         <button

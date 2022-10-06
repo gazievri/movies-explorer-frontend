@@ -8,8 +8,8 @@ const SearchForm = ({ handleMoviesRequest, keyWords = '', isCheckBoxActive, hand
   const [ text, setText ] = useState(keyWords)
 
   // Обработка сабмита формы
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (text) {
       setKeyWords(text);
       handleMoviesRequest();
@@ -19,8 +19,8 @@ const SearchForm = ({ handleMoviesRequest, keyWords = '', isCheckBoxActive, hand
   }
 
   // Обработка отправки формы по нажатию Enter
-  const handleKeydown = (e) => {
-    if (e.key === 'Enter') {
+  const handleKeydown = (event) => {
+    if (event.key === 'Enter') {
       handleSubmit();
     }
   }

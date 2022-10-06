@@ -1,4 +1,5 @@
 const MOVIE_URL = 'https://api.nomoreparties.co';
+const MAIN_API = 'http://localhost:3000'
 const SAVED_MOVIE = { // Удалить позже
   "id": 1,
   "nameRU": "«Роллинг Стоунз» в изгнании",
@@ -54,8 +55,9 @@ const SAVED_MOVIE = { // Удалить позже
 }
 
 const REGEXP_EMAIL = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+const REGEXP_NAME = /[a-zа-я\- ]/gmi
 
 
 
-export { MOVIE_URL, SAVED_MOVIE, REGEXP_EMAIL };
+export { MOVIE_URL, SAVED_MOVIE, REGEXP_EMAIL, MAIN_API, REGEXP_NAME };
 

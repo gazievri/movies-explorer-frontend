@@ -77,8 +77,14 @@
   opacity: 80%;
 }
 
-.moviescard__image {
+.moviescard__img-link {
   height: 203px;
+  object-fit: cover;
+}
+
+.moviescard__image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -88,7 +94,7 @@
     height: 258px;
   }
 
-  .moviescard__image {
+  .moviescard__img-link {
     height: 190px;
   }
 
@@ -103,7 +109,7 @@
     height: 236px;
   }
 
-  .moviescard__image {
+  .moviescard__img-link {
     height: 168px;
   }
 

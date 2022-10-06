@@ -5,10 +5,10 @@ import { getMovies } from '../../utils/MoviesApi';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import filterMovies from '../../utils/FilterMovies';
 import Preloader from '../Preloader/Preloader';
+import { convertMovieData } from '../../utils/ConvertMovieData';
 
-const Movies = () => {
+const Movies = ({ handleSaveMovie, savedMovies, handleDeleteMovie, movieIsSaved }) => {
 
-  const [screenWidth, setScreenWidth] = useState(window.screen.width)
   // Извлекаю базу фильмов из LocalStorage, проверяю на длинну и возращую значение для обновления стейта movies
   const extractMoviesLocal = () => {
     let moviesLocal = JSON.parse(localStorage.getItem('movies'));
@@ -28,42 +28,17 @@ const Movies = () => {
   const [moviesToRender, setMoviesToRender] = useState([]);
   const [keyWords, setKeyWords] = useState(localStorage.getItem('keyWords') ? localStorage.getItem('keyWords') : '' );
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(extractCheckBoxStatus());
-  const [moviesPerPage, setMoviesPerPage] = useState(12);
-  const [moviesAddToPage, setMoviesAddToPage] = useState(3);
-
-
-
-  // Определение ширины экрана и установление количества отображемых фильмов на страинце и количества добавляемых фильмов при нажатие клавиши Еще
-  const checkWindowWidth = () => {
-    const screenWidth = window.screen.width;
-
-    if (screenWidth >= 1280 ) {
-      setMoviesPerPage(12);
-      setMoviesAddToPage(3);
-      console.log(12)
-    } else if (screenWidth < 1280 && screenWidth > 761) {
-      setMoviesPerPage(8);
-      setMoviesAddToPage(2);
-      console.log(8)
-    } else {
-      setMoviesPerPage(5);
-      setMoviesAddToPage(2);
-      console.log(5)
-    }
-  }
-
-  // Слидит за размерами экрана и запускат функцию checkWindowWidth с задержкой
-  window.onresize = (event) => {
-    setTimeout(checkWindowWidth, 50);
-  };
+  const [isPreloaderActive, setIsPreloaderActive] = useState(false);
+  const [flag] = useState('movies')
 
   // Обработка запроса на поиск фильма
   const handleMoviesRequest = () => {
-    setMoviesPerPage(12);
     if (movies.length < 1) {
+      setIsPreloaderActive(true);
       getMovies()
       .then(data => {
-        setMovies(data);
+        setMovies(data.map(item => convertMovieData(item)));
+        setIsPreloaderActive(false);
       })
       .catch(err => console.log(err))
     }
@@ -91,20 +66,47 @@ const Movies = () => {
 
   // Изменнение списка фильмов для рендеринга в зависимости от запроса и фильтров
   useEffect(() => {
-    const filteredMovies = filterMovies(movies, keyWords, isCheckBoxActive)
+    let filteredMovies = filterMovies(movies, keyWords, isCheckBoxActive)
+
     setMoviesToRender(filteredMovies);
-  }, [keyWords, isCheckBoxActive, movies])
+  }, [keyWords, isCheckBoxActive, movies, savedMovies])
 
+  const handleClickSaveIcon = (data, isSaved) => {
+    if (!isSaved) {
 
-console.log('moviesToRender)', moviesToRender);
+      handleSaveMovie(data)
+    } else {
+      const deletetMovie = savedMovies.filter(item => item.movieId === data.movieId)
+      console.log(deletetMovie)
+      handleDeleteMovie(deletetMovie[0])
+
+    }
+  }
+
+  useEffect(() => {
+    moviesToRender.map(movie => movie.movieId === movieIsSaved.movieId ? movieIsSaved : movie)
+    console.log(movieIsSaved)
+  }, [movieIsSaved, moviesToRender])
+
+  console.log(movieIsSaved)
+  console.log(moviesToRender)
+
 
   return (
     <div className='movies'>
-      <SearchForm handleMoviesRequest={handleMoviesRequest} keyWords={keyWords} isCheckBoxActive={isCheckBoxActive} handleCheckBoxClick={handleCheckBoxClick} setKeyWords={setKeyWords} />
+      <SearchForm
+        handleMoviesRequest={handleMoviesRequest}
+        keyWords={keyWords}
+        isCheckBoxActive={isCheckBoxActive}
+        handleCheckBoxClick={handleCheckBoxClick}
+        setKeyWords={setKeyWords} />
       {
-        movies.length === 0 ? <Preloader /> :
+        isPreloaderActive ? <Preloader /> :
 
-      <MoviesCardList moviesToRender={moviesToRender} moviesPerPage={moviesPerPage} moviesAddToPage={moviesAddToPage} setMoviesPerPage={setMoviesPerPage} />
+      <MoviesCardList
+        moviesToRender={moviesToRender}
+        flag={flag}
+        handleClick={handleClickSaveIcon} />
 
 }
     </div>
