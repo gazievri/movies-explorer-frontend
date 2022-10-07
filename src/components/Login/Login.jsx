@@ -13,8 +13,6 @@ const Login = ({ handleLogin, errorMesage, setErrorMessage }) => {
     mode: "all",
   });
 
-  console.log(errorMesage)
-
   const onSubmit = (data) => {
     setErrorMessage('')
     handleLogin(data);

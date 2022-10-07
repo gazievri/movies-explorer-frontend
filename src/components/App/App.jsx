@@ -15,6 +15,9 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import BurgerPopup from "../BurgerPopup/BurgerPopup";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { getMovies } from '../../utils/MoviesApi';
+import { convertMovieData } from '../../utils/ConvertMovieData';
+import PrivateRoutes from '../../utils/PrivateRoutes';
 import {
   signup,
   login,
@@ -28,16 +31,41 @@ import {
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Отвечает за авторизацию
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('logIn')); // Отвечает за авторизацию
   const [isPopupOpened, setIsPopupOpned] = useState(false); // Отвечает за открытие попапа бургер меню
   const [isStatusPopupOpened, setIsStatusPopupOpened] = useState(false); // Отвечает за открытипе попапа с сообщением о результате
   const [errorMesage, setErrorMessage] = useState("");
   const [savedMovies, setSavedMovies] = useState([]);
   const [movieIsSaved, setMovieIsSaved] = useState([])
-
+  const [isPreloaderActive, setIsPreloaderActive] = useState(false);
   const [isDisabledEditProfile, setIsDisabledEditProfile] = useState(false);
 
+  // Извлекаю базу фильмов из LocalStorage, проверяю на длинну и возращую значение для обновления стейта movies
+  const extractAllMoviesLocal = () => {
+    let allMoviesLocal = JSON.parse(localStorage.getItem('allMovies'));
+    if (!allMoviesLocal) {
+      return allMoviesLocal = [];
+    }
+    return allMoviesLocal;
+  }
+
+  const [allMovies, setAllMovies] = useState(extractAllMoviesLocal())
+
   let navigate = useNavigate();
+
+
+  const getAllMovies = () => {
+    setIsPreloaderActive(true)
+    getMovies()
+    .then(res => {
+      let moviesList = res.map(item => convertMovieData(item));
+
+      setAllMovies(moviesList);
+      localStorage.setItem('allMovies', JSON.stringify(moviesList));
+      setIsPreloaderActive(false)
+    })
+    .catch(err => console.log(err))
+  }
 
   // Обработка регистрации пользователя
   const handleSignup = (data) => {
@@ -53,6 +81,8 @@ const App = () => {
       });
   };
 
+
+
   // Обработка авторизации
   const handleLogin = (data) => {
     const { email, password } = data;
@@ -60,6 +90,7 @@ const App = () => {
       .then((data) => {
         if (data.message === "Athorization successful") {
           setIsLoggedIn(true);
+          localStorage.setItem('logIn', true )
           getUserData();
           navigate("/movies");
         }
@@ -69,16 +100,22 @@ const App = () => {
       });
   };
 
+
+
+
   // Обработка де-авторизации
   const handleLogout = () => {
     logout()
       .then(() => {
         setIsLoggedIn(false);
-        navigate("/");
+        localStorage.removeItem('logIn');
         localStorage.clear();
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
+
+
 
   // Обработка обновления данных профиля
   const handleUpdateUserData = ({name, email}) => {
@@ -108,11 +145,20 @@ const App = () => {
   const handleSaveMovie = (movie) => {
     // Проверяю есть сохраняемый фильм среди уже сохраненных чтобы исключить повторное сохранение фильма
     const isMovieSawedAllReady = savedMovies.some(item => item.movieId === movie.movieId);
+
     if (!isMovieSawedAllReady) {
+      // Удаляю лишнее свойство saved из объекта для сохранения в mongoDb
+      delete movie.saved;
+      delete movie._id;
+      // Отправляю фильм на сохранение в mongoDb
       saveMovie(movie)
       .then((res) => {
+        // Сохраненный фильм сохраняю в массив сохраненных фильмов
         setSavedMovies([...savedMovies, res.data])
-        setMovieIsSaved(res.data)
+        const updatedAllMovies = allMovies.map(el => el.movieId === res.data.movieId ? el = {...el, saved: true, _id: res.data._id } : el)
+        setAllMovies(updatedAllMovies);
+        localStorage.setItem('allMovies', JSON.stringify(updatedAllMovies));
+
       })
       .catch((err) => console.log(err));
     }
@@ -125,6 +171,9 @@ const App = () => {
           (item) => item._id !== movie._id
         );
         setSavedMovies(newSavedMovies);
+        const updatedAllMovies = allMovies.map(el => el.movieId === movie.movieId ? el = {...el, saved: false} : el)
+        setAllMovies(updatedAllMovies);
+        localStorage.setItem('allMovies', JSON.stringify(updatedAllMovies));
       })
       .catch((err) => console.log(err));
   };
@@ -135,50 +184,73 @@ const App = () => {
       if (res.data._id) {
         setCurrentUser(res.data);
         setIsLoggedIn(true);
+        localStorage.setItem('logIn', true )
       }
     });
   };
 
   // При загрузке страницы используем tokenCheck
   useEffect(() => {
-    tokenCheck();
-  }, []);
+    if (isLoggedIn) {
+      tokenCheck()
+    }
 
+  }, [isLoggedIn]);
 
   // При загрузке страницы запрашивает список сохраненных фильмов
   useEffect(() => {
-    getSavedMovies()
+    if (isLoggedIn) {
+          getSavedMovies()
       .then((data) => setSavedMovies(data.data))
       .catch((err) => console.log(err));
-  }, []);
+    }
+
+  }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <Header isLoggedIn={isLoggedIn} handlePopupOpen={handlePopupOpen} />
         <main>
+
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route
-              path="/movies"
-              element={
-                <Movies
-                  handleSaveMovie={handleSaveMovie}
+            <Route element={ <PrivateRoutes isLoggedIn={isLoggedIn} /> } >
+              <Route element={ <Movies
+                      handleSaveMovie={handleSaveMovie}
+                      savedMovies={savedMovies}
+                      handleDeleteMovie={handleDeleteMovie}
+                      movieIsSaved={movieIsSaved}
+                      allMovies={allMovies}
+                      getAllMovies={getAllMovies}
+                      isPreloaderActive={isPreloaderActive}
+                      setIsPreloaderActive={setIsPreloaderActive}
+                    /> }
+                path="/movies"
+              />
+
+              <Route element={ <SavedMovies
                   savedMovies={savedMovies}
                   handleDeleteMovie={handleDeleteMovie}
-                  movieIsSaved={movieIsSaved}
-                />
-              }
-            />
-            <Route
-              path="/saved-movies"
-              element={
-                <SavedMovies
-                  savedMovies={savedMovies}
-                  handleDeleteMovie={handleDeleteMovie}
-                />
-              }
-            />
+                />}
+                path="/saved-movies"
+              />
+
+              <Route element={<Profile
+                  handleLogout={handleLogout}
+                  handleUpdateUserData={handleUpdateUserData}
+                  errorMesage={errorMesage}
+                  setErrorMessage={setErrorMessage}
+                  isDisabledEditProfile={isDisabledEditProfile}
+                  setIsDisabledEditProfile={setIsDisabledEditProfile}
+                />}
+                path="/profile"
+              />
+
+              <Route path="/*" element={<PageNotFound />} />
+
+            </Route>
+
             <Route
               path="/signup"
               element={
@@ -199,12 +271,10 @@ const App = () => {
                 />
               }
             />
-            <Route
-              path="/profile"
-              element={<Profile handleLogout={handleLogout} handleUpdateUserData={handleUpdateUserData} errorMesage={errorMesage} setErrorMessage={setErrorMessage} isDisabledEditProfile={isDisabledEditProfile} setIsDisabledEditProfile={setIsDisabledEditProfile} />}
-            />
-            <Route path="/*" element={<PageNotFound />} />
+
+
           </Routes>
+
         </main>
         <Footer />
         <StatusPopup

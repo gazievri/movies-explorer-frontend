@@ -14,7 +14,8 @@ const convertMovieData = (movie) => {
     nameRU: movie.nameRU,
     nameEN: movie.nameEN,
     thumbnail: `${MOVIE_URL}${movie.image.url}`,
-    movieId: `${movie.id}`
+    movieId: `${movie.id}`,
+    saved: false,
   }
   return convertedMovie;
 }
