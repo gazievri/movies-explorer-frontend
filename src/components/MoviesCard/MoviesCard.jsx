@@ -5,10 +5,9 @@ import { convertMovieData } from '../../utils/ConvertMovieData';
 
 const MoviesCard = ({ movie, handleClick}) => {
   const { nameRU, trailerLink, duration, image } = movie;
-  const [isSaved, setIsSaved] = useState(movie._id ? true : false);
+  const [isSaved, setIsSaved] = useState(movie.saved);
   const { pathname } = useLocation();
 
-  console.log(movie)
 
   // Форматирование продолжительности фильма в часы
   const getTimeFromMins = (duration) => {

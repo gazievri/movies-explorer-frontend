@@ -1,6 +1,9 @@
 const filterMovies = (movies, keyWords, isCheckBoxActive) => {
+  let filteredMovies = movies;
 
-  let filteredMovies = movies.filter(item => item.nameRU.toLowerCase().includes(keyWords.toLowerCase()))
+  if (keyWords !== '') {
+    filteredMovies = filteredMovies.filter(item => item.nameRU.toLowerCase().includes(keyWords.toLowerCase()))
+  }
 
   if (isCheckBoxActive) {
     filteredMovies = filteredMovies.filter(item => item.duration <= 40);
@@ -9,5 +12,6 @@ const filterMovies = (movies, keyWords, isCheckBoxActive) => {
 
   return filteredMovies
 }
+
 
 export default filterMovies;

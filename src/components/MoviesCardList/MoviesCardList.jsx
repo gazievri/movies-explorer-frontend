@@ -8,8 +8,7 @@ const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
   const [isBtnHidden, setIsBtnHidden] = useState(false);
   const [moviesPerPage, setMoviesPerPage] = useState(12);
   const [moviesAddToPage, setMoviesAddToPage] = useState(3);
-
-  console.log(moviesToRender)
+  console.log(moviesStartPack, 'cardlist')
 
   // Определение ширины экрана и установление количества отображемых фильмов на страинце и количества добавляемых фильмов при нажатие клавиши Еще
   const checkWindowWidth = () => {
@@ -45,6 +44,7 @@ const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
     switch (flag) {
       case 'saved':
         setIsBtnHidden(true);
+        setMoviesStartPack(moviesToRender)
         break;
       case 'movies':
         if (moviesToRender.length <= moviesPerPage) {

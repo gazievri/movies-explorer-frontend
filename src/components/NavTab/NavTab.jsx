@@ -2,7 +2,7 @@ import './NavTab.css';
 
 const NavTab = () => {
   return (
-    
+
     <nav className='navtab'>
       <ul className='navtab__list'>
         <li className='navtab__item'>
