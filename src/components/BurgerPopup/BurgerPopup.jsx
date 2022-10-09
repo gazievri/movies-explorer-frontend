@@ -1,5 +1,4 @@
 import "./BurgerPopup.css";
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const BurgerPopup = ({ isPopupOpened, handlePopupOpen }) => {
@@ -12,7 +11,7 @@ const BurgerPopup = ({ isPopupOpened, handlePopupOpen }) => {
     <div
       className={`burgerpopup ${
         isPopupOpened ? "burgerpopup_status_opened" : ""
-      }`} 
+      }`}
     >
       <div className="burgerpopup__container">
         <button

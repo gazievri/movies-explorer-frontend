@@ -14,7 +14,7 @@ const Register = ({ handleSignup, errorMesage, setErrorMessage }) => {
   });
 
 console.log(isValid, Object.keys(errors).length)
-
+  // Обработчик нажатия сабмита
   const onSubmit = (data) => {
     handleSignup(data);
     setErrorMessage('');

@@ -2,7 +2,7 @@ import "./Login.css";
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { REGEXP_EMAIL, REGEXP_NAME } from "../../utils/constants";
+import { REGEXP_EMAIL } from "../../utils/constants";
 
 const Login = ({ handleLogin, errorMesage, setErrorMessage }) => {
   const {
@@ -14,7 +14,7 @@ const Login = ({ handleLogin, errorMesage, setErrorMessage }) => {
   });
 
   const onSubmit = (data) => {
-    setErrorMessage('')
+    setErrorMessage("");
     handleLogin(data);
   };
 
@@ -59,8 +59,18 @@ const Login = ({ handleLogin, errorMesage, setErrorMessage }) => {
         {errors.password ? errors.password.message : "1"}
       </span>
 
-      <span className={`login__server-error ${errorMesage ? 'login__server-error_active' : ''}`}>{errorMesage ? errorMesage : '1'}</span>
-      <button className={`login__button ${!isValid ? 'login__button_disabled' : ''}`}>Войти</button>
+      <span
+        className={`login__server-error ${
+          errorMesage ? "login__server-error_active" : ""
+        }`}
+      >
+        {errorMesage ? errorMesage : "1"}
+      </span>
+      <button
+        className={`login__button ${!isValid ? "login__button_disabled" : ""}`}
+      >
+        Войти
+      </button>
       <p className="login__subtitle">
         Еще не зарегистрированы?{" "}
         <Link to="/signup" className="login__link">

@@ -1,13 +1,11 @@
 import "./MoviesCard.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { convertMovieData } from '../../utils/ConvertMovieData';
 
 const MoviesCard = ({ movie, handleClick}) => {
   const { nameRU, trailerLink, duration, image } = movie;
   const [isSaved, setIsSaved] = useState(movie.saved);
   const { pathname } = useLocation();
-
 
   // Форматирование продолжительности фильма в часы
   const getTimeFromMins = (duration) => {
@@ -16,11 +14,11 @@ const MoviesCard = ({ movie, handleClick}) => {
     return `${hours}ч ${minutes}м`;
   };
 
+  // Обрабокта на жатия клика на иконке
   const handleClickOnIcon = () => {
-    setIsSaved(!isSaved);
-    handleClick(movie, isSaved);
+    setIsSaved(!isSaved); // Меняем сстатус сохранения фильма
+    handleClick(movie, isSaved); // Выполняем функцию, которая приходит в пропсах (либо из movies либо ищ saved-movies)
   }
-
 
   return (
     <div className="moviescard">

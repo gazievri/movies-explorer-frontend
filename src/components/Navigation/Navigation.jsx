@@ -2,6 +2,7 @@ import "./Navigation.css";
 import { Link } from "react-router-dom";
 
 const Navigation = ({ isLoggedIn, handlePopupOpen }) => {
+  // Определяет размер экрана который используется для отображения бургер меню
   const windowInnerWidth = window.innerWidth;
 
   return (

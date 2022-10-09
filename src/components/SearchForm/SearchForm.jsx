@@ -38,7 +38,6 @@ const SearchForm = ({ handleMoviesSearch, keyWords = '', isCheckBoxActive, handl
     }
   }
 
-
   return (
     <form className='searchfilm' onSubmit={handleSubmit} noValidate onKeyDown={handleKeydown}>
       <input className='searchfilm__input' type='search' placeholder='Фильм' required onChange={handleChange} value={text} />

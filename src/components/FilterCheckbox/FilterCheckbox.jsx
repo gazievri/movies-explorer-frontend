@@ -1,20 +1,23 @@
-import './FilterCheckbox.css';
-import { useState } from 'react';
+import "./FilterCheckbox.css";
+import { useState } from "react";
 
 const FilterCheckbox = ({ isCheckBoxActive, handleCheckBoxClick }) => {
- 
   const handleOnClick = () => {
-    handleCheckBoxClick()
-  }
+    handleCheckBoxClick();
+  };
 
   return (
-    <div className='filtercheckbox'>
-      <div className='filtercheckbox__handler'  onClick={handleOnClick}>
-        <div className={`filtercheckbox__handler-circle ${isCheckBoxActive ? 'filtercheckbox__handler-circle_active' : ''}`}></div>
+    <div className="filtercheckbox">
+      <div className="filtercheckbox__handler" onClick={handleOnClick}>
+        <div
+          className={`filtercheckbox__handler-circle ${
+            isCheckBoxActive ? "filtercheckbox__handler-circle_active" : ""
+          }`}
+        ></div>
       </div>
-      <p className='filtercheckbox__title'>Короткометражки</p>
+      <p className="filtercheckbox__title">Короткометражки</p>
     </div>
-  )
-}
+  );
+};
 
 export default FilterCheckbox;

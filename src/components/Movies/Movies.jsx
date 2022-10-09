@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import filterMovies from '../../utils/FilterMovies';
 import Preloader from '../Preloader/Preloader';
 
-const Movies = ({ handleSaveMovie, savedMovies, handleDeleteMovie, allMovies, getAllMovies, setIsPreloaderActive, isPreloaderActive  }) => {
+const Movies = ({ handleSaveMovie, savedMovies, handleDeleteMovie, allMovies, getAllMovies, isPreloaderActive  }) => {
 
   // Извлекаю статус чекбокса фильтрации по короткометражным фильмам из LocalStorage и возращую значение для обновления стейта isCheckBoxActive
   const extractCheckBoxStatus = () => {
@@ -49,6 +49,7 @@ const Movies = ({ handleSaveMovie, savedMovies, handleDeleteMovie, allMovies, ge
     setMoviesToRender(filteredMovies);
   }, [keyWords, isCheckBoxActive, allMovies, savedMovies])
 
+  // ОБработка на жатися на иконку сохраниить фильм (в зависимости от статуса фильма происходит разные действия)
   const handleClickSaveIcon = (data, isSaved) => {
     if (!isSaved) {
       handleSaveMovie(data)
@@ -58,6 +59,7 @@ const Movies = ({ handleSaveMovie, savedMovies, handleDeleteMovie, allMovies, ge
     }
   }
 
+  // Сохраняет ключевое слово с LocalStorage каждай раз при его изменении
   useEffect(()=>{
     localStorage.setItem('keyWords', keyWords);
   }, [keyWords])
@@ -77,8 +79,8 @@ const Movies = ({ handleSaveMovie, savedMovies, handleDeleteMovie, allMovies, ge
         moviesToRender={moviesToRender}
         flag={flag}
         handleClick={handleClickSaveIcon} />
-
-}
+        
+      }
     </div>
   )
 }

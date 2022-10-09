@@ -14,11 +14,11 @@ import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import BurgerPopup from "../BurgerPopup/BurgerPopup";
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { getMovies } from '../../utils/MoviesApi';
-import { convertMovieData } from '../../utils/ConvertMovieData';
-import { setStatusSaved } from '../../utils/setStatusSaved';
-import PrivateRoutes from '../../utils/PrivateRoutes';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { getMovies } from "../../utils/MoviesApi";
+import { convertMovieData } from "../../utils/ConvertMovieData";
+import { setStatusSaved } from "../../utils/setStatusSaved";
+import PrivateRoutes from "../../utils/PrivateRoutes";
 import {
   signup,
   login,
@@ -32,7 +32,7 @@ import {
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('logIn')); // Отвечает за авторизацию
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("logIn")); // Отвечает за авторизацию
   const [isPopupOpened, setIsPopupOpned] = useState(false); // Отвечает за открытие попапа бургер меню
   const [isStatusPopupOpened, setIsStatusPopupOpened] = useState(false); // Отвечает за открытипе попапа с сообщением о результате
   const [errorMesage, setErrorMessage] = useState("");
@@ -42,32 +42,32 @@ const App = () => {
 
   // Извлекаю базу фильмов из LocalStorage, проверяю на длинну и возращую значение для обновления стейта movies
   const extractAllMoviesLocal = () => {
-    let allMoviesLocal = JSON.parse(localStorage.getItem('allMovies'));
+    let allMoviesLocal = JSON.parse(localStorage.getItem("allMovies"));
     if (!allMoviesLocal) {
-      return allMoviesLocal = [];
+      return (allMoviesLocal = []);
     }
     return allMoviesLocal;
-  }
+  };
 
-  const [allMovies, setAllMovies] = useState(extractAllMoviesLocal())
+  const [allMovies, setAllMovies] = useState(extractAllMoviesLocal());
 
   let navigate = useNavigate();
 
-
+  // Запрос списка всех фильмов и проведение ниобходимых операций с ним
   const getAllMovies = () => {
-    setIsPreloaderActive(true)
+    setIsPreloaderActive(true); // Включаем прелоадер
     getMovies()
-    .then(res => {
-      let moviesList = res.map(item => convertMovieData(item));
-      moviesList = moviesList.map(item => setStatusSaved(item, savedMovies));
-      console.log(moviesList)
-
-      setAllMovies(moviesList);
-      localStorage.setItem('allMovies', JSON.stringify(moviesList));
-      setIsPreloaderActive(false)
-    })
-    .catch(err => console.log(err))
-  }
+      .then((res) => {
+        let moviesList = res.map((item) => convertMovieData(item)); // форматирование полей
+        moviesList = moviesList.map((item) =>
+          setStatusSaved(item, savedMovies)
+        ); // проверка на сохранение ранее
+        setAllMovies(moviesList); // установка стейта
+        localStorage.setItem("allMovies", JSON.stringify(moviesList)); // запись в LocalStorage
+        setIsPreloaderActive(false); // Выключаем прелоадер
+      })
+      .catch((err) => console.log(err));
+  };
 
   // Обработка регистрации пользователя
   const handleSignup = (data) => {
@@ -83,8 +83,6 @@ const App = () => {
       });
   };
 
-
-
   // Обработка авторизации
   const handleLogin = (data) => {
     const { email, password } = data;
@@ -92,7 +90,7 @@ const App = () => {
       .then((data) => {
         if (data.message === "Athorization successful") {
           setIsLoggedIn(true);
-          localStorage.setItem('logIn', true )
+          localStorage.setItem("logIn", true);
           getUserData();
           navigate("/movies");
         }
@@ -102,34 +100,30 @@ const App = () => {
       });
   };
 
-
-
-
   // Обработка де-авторизации
   const handleLogout = () => {
     logout()
       .then(() => {
         setIsLoggedIn(false);
-        //localStorage.removeItem('logIn');
         localStorage.clear();
         navigate("/");
       })
       .catch((err) => console.log(err));
   };
 
-  
-
-
   // Обработка обновления данных профиля
-  const handleUpdateUserData = ({name, email}) => {
+  const handleUpdateUserData = ({ name, email }) => {
     updateUserInfo(name, email)
-    .then(res => {
-      setCurrentUser(res.data);
-      setIsDisabledEditProfile(false);
-    })
-    .catch(err => setErrorMessage(err.response))
-  }
-
+      .then((res) => {
+        setCurrentUser(res.data);
+        setIsDisabledEditProfile(false);
+        setIsStatusPopupOpened(true);
+        setTimeout(() => {
+          setIsStatusPopupOpened(false);
+        }, 1000); // Закрываем попап статус через определеннео время
+      })
+      .catch((err) => setErrorMessage(err.response));
+  };
 
   // Обработка открытия попапа бургер меню
   const handlePopupOpen = () => {
@@ -147,7 +141,9 @@ const App = () => {
 
   const handleSaveMovie = (movie) => {
     // Проверяю есть сохраняемый фильм среди уже сохраненных чтобы исключить повторное сохранение фильма
-    const isMovieSawedAllReady = savedMovies.some(item => item.movieId === movie.movieId);
+    const isMovieSawedAllReady = savedMovies.some(
+      (item) => item.movieId === movie.movieId
+    );
 
     if (!isMovieSawedAllReady) {
       // Удаляю лишнее свойство saved из объекта для сохранения в mongoDb
@@ -155,15 +151,18 @@ const App = () => {
       delete movie._id;
       // Отправляю фильм на сохранение в mongoDb
       saveMovie(movie)
-      .then((res) => {
-        // Сохраненный фильм сохраняю в массив сохраненных фильмов
-        setSavedMovies([...savedMovies, res.data])
-        const updatedAllMovies = allMovies.map(el => el.movieId === res.data.movieId ? el = {...el, saved: true, _id: res.data._id } : el)
-        setAllMovies(updatedAllMovies);
-        localStorage.setItem('allMovies', JSON.stringify(updatedAllMovies));
-
-      })
-      .catch((err) => console.log(err));
+        .then((res) => {
+          // Сохраненный фильм сохраняю в массив сохраненных фильмов
+          setSavedMovies([...savedMovies, res.data]);
+          const updatedAllMovies = allMovies.map((el) =>
+            el.movieId === res.data.movieId
+              ? (el = { ...el, saved: true, _id: res.data._id })
+              : el
+          );
+          setAllMovies(updatedAllMovies);
+          localStorage.setItem("allMovies", JSON.stringify(updatedAllMovies));
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -174,9 +173,11 @@ const App = () => {
           (item) => item._id !== movie._id
         );
         setSavedMovies(newSavedMovies);
-        const updatedAllMovies = allMovies.map(el => el.movieId === movie.movieId ? el = {...el, saved: false} : el)
+        const updatedAllMovies = allMovies.map((el) =>
+          el.movieId === movie.movieId ? (el = { ...el, saved: false }) : el
+        );
         setAllMovies(updatedAllMovies);
-        localStorage.setItem('allMovies', JSON.stringify(updatedAllMovies));
+        localStorage.setItem("allMovies", JSON.stringify(updatedAllMovies));
       })
       .catch((err) => console.log(err));
   };
@@ -187,7 +188,7 @@ const App = () => {
       if (res.data._id) {
         setCurrentUser(res.data);
         setIsLoggedIn(true);
-        localStorage.setItem('logIn', true )
+        localStorage.setItem("logIn", true);
       }
     });
   };
@@ -195,19 +196,17 @@ const App = () => {
   // При загрузке страницы используем tokenCheck
   useEffect(() => {
     if (isLoggedIn) {
-      tokenCheck()
+      tokenCheck();
     }
-
   }, [isLoggedIn]);
 
   // При загрузке страницы запрашивает список сохраненных фильмов
   useEffect(() => {
     if (isLoggedIn) {
-          getSavedMovies()
-      .then((data) => setSavedMovies(data.data))
-      .catch((err) => console.log(err));
+      getSavedMovies()
+        .then((data) => setSavedMovies(data.data))
+        .catch((err) => console.log(err));
     }
-
   }, [isLoggedIn]);
 
   return (
@@ -215,42 +214,48 @@ const App = () => {
       <div className="app">
         <Header isLoggedIn={isLoggedIn} handlePopupOpen={handlePopupOpen} />
         <main>
-
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route element={ <PrivateRoutes isLoggedIn={isLoggedIn} /> } >
-              <Route element={ <Movies
-                      handleSaveMovie={handleSaveMovie}
-                      savedMovies={savedMovies}
-                      handleDeleteMovie={handleDeleteMovie}
-                      allMovies={allMovies}
-                      getAllMovies={getAllMovies}
-                      isPreloaderActive={isPreloaderActive}
-                      setIsPreloaderActive={setIsPreloaderActive}
-                    /> }
+            <Route element={<PrivateRoutes isLoggedIn={isLoggedIn} />}>
+              <Route
+                element={
+                  <Movies
+                    handleSaveMovie={handleSaveMovie}
+                    savedMovies={savedMovies}
+                    handleDeleteMovie={handleDeleteMovie}
+                    allMovies={allMovies}
+                    getAllMovies={getAllMovies}
+                    isPreloaderActive={isPreloaderActive}
+                  />
+                }
                 path="/movies"
               />
 
-              <Route element={ <SavedMovies
-                  savedMovies={savedMovies}
-                  handleDeleteMovie={handleDeleteMovie}
-                />}
+              <Route
+                element={
+                  <SavedMovies
+                    savedMovies={savedMovies}
+                    handleDeleteMovie={handleDeleteMovie}
+                  />
+                }
                 path="/saved-movies"
               />
 
-              <Route element={<Profile
-                  handleLogout={handleLogout}
-                  handleUpdateUserData={handleUpdateUserData}
-                  errorMesage={errorMesage}
-                  setErrorMessage={setErrorMessage}
-                  isDisabledEditProfile={isDisabledEditProfile}
-                  setIsDisabledEditProfile={setIsDisabledEditProfile}
-                />}
+              <Route
+                element={
+                  <Profile
+                    handleLogout={handleLogout}
+                    handleUpdateUserData={handleUpdateUserData}
+                    errorMesage={errorMesage}
+                    setErrorMessage={setErrorMessage}
+                    isDisabledEditProfile={isDisabledEditProfile}
+                    setIsDisabledEditProfile={setIsDisabledEditProfile}
+                  />
+                }
                 path="/profile"
               />
 
               <Route path="/*" element={<PageNotFound />} />
-
             </Route>
 
             <Route
@@ -273,10 +278,7 @@ const App = () => {
                 />
               }
             />
-
-
           </Routes>
-
         </main>
         <Footer />
         <StatusPopup

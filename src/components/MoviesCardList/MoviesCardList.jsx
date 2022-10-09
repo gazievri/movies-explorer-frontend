@@ -36,10 +36,12 @@ const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
     setTimeout(checkWindowWidth, 50);
   };
 
+  // Функция изменяет стейт количество фильмов на странице по принципу
   const handleClickMoreMovies = () => {
     setMoviesPerPage(moviesPerPage + moviesAddToPage);
   };
 
+  // В зависимости от страницы  (movies or saved-movies) управляет состоянием кнопки Еще и количеством фильмов на странице
   useEffect(() => {
     switch (flag) {
       case 'saved':
