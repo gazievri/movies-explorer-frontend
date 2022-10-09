@@ -74,7 +74,7 @@ const App = () => {
     const { name, email, password } = data;
     signup(name, email, password)
       .then((res) => {
-        if (res) {
+        if (res.name || res.email) {
           handleLogin(data);
         }
       })
