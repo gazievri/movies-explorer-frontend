@@ -1,57 +1,74 @@
 import "./Profile.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext, useState, useEffect } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { REGEXP_EMAIL, REGEXP_NAME } from "../../utils/constants";
 
-const Profile = ({ handleLogout,
+const Profile = ({
+  handleLogout,
   handleUpdateUserData,
   errorMesage,
   setErrorMessage,
   isDisabledEditProfile,
-  setIsDisabledEditProfile }) => {
+  setIsDisabledEditProfile,
+}) => {
   const currentUser = useContext(CurrentUserContext);
+  const [isDataTheSame, setIsDataTheSame] = useState(true);
 
-
+  // Инициация формы через useForm
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
     setValue,
+    getValues,
     watch,
   } = useForm({
     mode: "all",
   });
 
-  const watchAllFields = watch();
-
+  // Обработка клика на выход из профиля
   const handleCLickLogout = () => {
     handleLogout();
   };
 
+  // Обработка клика по кнопке Редактировать
   const handleClickEdit = () => {
     setIsDisabledEditProfile(!isDisabledEditProfile);
-    setErrorMessage('')
+    setErrorMessage("");
   };
 
+  // Обработка нажатия на кнопку Сохранить
   const onSubmit = (data) => {
-
     handleUpdateUserData(data);
-
-    if(errorMesage) {
+    if (errorMesage) {
       setIsDisabledEditProfile(!isDisabledEditProfile);
     }
-
   };
 
+  // Эффект отслеживает текущее значение полей формы и если текущие значения не совпадают с данными пользователя, то устанавливает стейт IsDataTheSame ложным
+  useEffect(() => {
+    const valuesField = getValues(["name", "email"]);
+    if (
+      currentUser.name === valuesField[0] &&
+      currentUser.email === valuesField[1]
+    ) {
+      setIsDataTheSame(true);
+    } else {
+      setIsDataTheSame(false);
+    }
+  }, [currentUser, getValues]);
+
+  // Эффект устанавливает занчения полей по умолчанию из данных текущего пользователя
   useEffect(() => {
     setValue("name", currentUser.name);
     setValue("email", currentUser.email);
-  }, [currentUser]);
+  }, [currentUser, setValue]);
 
+  // Эффект очищает текст ошибки при любом изменении в полях, то есть отслеживаем изменения в полях после вывода ошибки
   useEffect(() => {
-    setErrorMessage('')
-  }, [watch])
+    setErrorMessage("");
+  }, [watch, setErrorMessage]);
 
   return (
     <form className="profile" onSubmit={handleSubmit(onSubmit)}>
@@ -84,7 +101,6 @@ const Profile = ({ handleLogout,
         <input
           className="profile__value"
           type="email"
-      
           disabled={isDisabledEditProfile ? "" : "disabled"}
           {...register("email", {
             required: "Это поле обязазательно для заполнения",
@@ -124,7 +140,9 @@ const Profile = ({ handleLogout,
           </span>
           <button
             className={`profile__save-btn ${
-              !isValid || errorMesage ? "profile__save-btn_disabled" : ""
+              !isValid || errorMesage || isDataTheSame
+                ? "profile__save-btn_disabled"
+                : ""
             }`}
             type="submit"
           >
