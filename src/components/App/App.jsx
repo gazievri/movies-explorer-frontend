@@ -111,6 +111,7 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
+
   // Обработка обновления данных профиля
   const handleUpdateUserData = ({ name, email }) => {
     updateUserInfo(name, email)
