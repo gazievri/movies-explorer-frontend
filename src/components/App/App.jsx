@@ -17,6 +17,7 @@ import BurgerPopup from "../BurgerPopup/BurgerPopup";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { getMovies } from '../../utils/MoviesApi';
 import { convertMovieData } from '../../utils/ConvertMovieData';
+import { setStatusSaved } from '../../utils/setStatusSaved';
 import PrivateRoutes from '../../utils/PrivateRoutes';
 import {
   signup,
@@ -36,7 +37,6 @@ const App = () => {
   const [isStatusPopupOpened, setIsStatusPopupOpened] = useState(false); // Отвечает за открытипе попапа с сообщением о результате
   const [errorMesage, setErrorMessage] = useState("");
   const [savedMovies, setSavedMovies] = useState([]);
-  const [movieIsSaved, setMovieIsSaved] = useState([])
   const [isPreloaderActive, setIsPreloaderActive] = useState(false);
   const [isDisabledEditProfile, setIsDisabledEditProfile] = useState(false);
 
@@ -59,6 +59,8 @@ const App = () => {
     getMovies()
     .then(res => {
       let moviesList = res.map(item => convertMovieData(item));
+      moviesList = moviesList.map(item => setStatusSaved(item, savedMovies));
+      console.log(moviesList)
 
       setAllMovies(moviesList);
       localStorage.setItem('allMovies', JSON.stringify(moviesList));
@@ -108,13 +110,14 @@ const App = () => {
     logout()
       .then(() => {
         setIsLoggedIn(false);
-        localStorage.removeItem('logIn');
+        //localStorage.removeItem('logIn');
         localStorage.clear();
         navigate("/");
       })
       .catch((err) => console.log(err));
   };
 
+  
 
 
   // Обработка обновления данных профиля
@@ -220,7 +223,6 @@ const App = () => {
                       handleSaveMovie={handleSaveMovie}
                       savedMovies={savedMovies}
                       handleDeleteMovie={handleDeleteMovie}
-                      movieIsSaved={movieIsSaved}
                       allMovies={allMovies}
                       getAllMovies={getAllMovies}
                       isPreloaderActive={isPreloaderActive}
