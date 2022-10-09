@@ -1,5 +1,5 @@
 const MOVIE_URL = 'https://api.nomoreparties.co';
-const MAIN_API = 'https://api.movie.gazievri.nomoredomains.sbs'
+const MAIN_API = 'http://localhost:3000'
 const SAVED_MOVIE = { // Удалить позже
   "id": 1,
   "nameRU": "«Роллинг Стоунз» в изгнании",
