@@ -13,7 +13,7 @@ const Register = ({ handleSignup, errorMesage, setErrorMessage }) => {
     mode: "all",
   });
 
-console.log(isValid, Object.keys(errors).length)
+
   // Обработчик нажатия сабмита
   const onSubmit = (data) => {
     handleSignup(data);

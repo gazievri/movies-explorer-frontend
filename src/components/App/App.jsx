@@ -19,6 +19,7 @@ import { getMovies } from "../../utils/MoviesApi";
 import { convertMovieData } from "../../utils/ConvertMovieData";
 import { setStatusSaved } from "../../utils/setStatusSaved";
 import PrivateRoutes from "../../utils/PrivateRoutes";
+import OpenRoutes from '../../utils/OpenRoutes';
 import {
   signup,
   login,
@@ -66,7 +67,9 @@ const App = () => {
         localStorage.setItem("allMovies", JSON.stringify(moviesList)); // запись в LocalStorage
         setIsPreloaderActive(false); // Выключаем прелоадер
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)}
+      );
   };
 
   // Обработка регистрации пользователя
@@ -106,9 +109,12 @@ const App = () => {
       .then(() => {
         setIsLoggedIn(false);
         localStorage.clear();
+        setAllMovies([]);
+        setSavedMovies([]);
+        setCurrentUser({});
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => forceLogOutIfErr(err));
   };
 
 
@@ -123,7 +129,10 @@ const App = () => {
           setIsStatusPopupOpened(false);
         }, 1000); // Закрываем попап статус через определеннео время
       })
-      .catch((err) => setErrorMessage(err.response));
+      .catch((err) => {
+        forceLogOutIfErr(err);
+        setErrorMessage(err.response);
+      });
   };
 
   // Обработка открытия попапа бургер меню
@@ -134,9 +143,11 @@ const App = () => {
   // Получение данных о текущем пользователе и сохранении их в currentUser
   const getUserData = () => {
     if (isLoggedIn) {
-      getUserInfo().then((res) => {
+      getUserInfo()
+      .then((res) => {
         setCurrentUser(res.data);
-      });
+      })
+      .catch(err => forceLogOutIfErr(err));
     }
   };
 
@@ -163,7 +174,7 @@ const App = () => {
           setAllMovies(updatedAllMovies);
           localStorage.setItem("allMovies", JSON.stringify(updatedAllMovies));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => forceLogOutIfErr(err));
     }
   };
 
@@ -180,19 +191,37 @@ const App = () => {
         setAllMovies(updatedAllMovies);
         localStorage.setItem("allMovies", JSON.stringify(updatedAllMovies));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => forceLogOutIfErr(err));
   };
 
   // Отправяет данные на сервер, если ответ пришел и в нем есть id, то устанавливает статус LoggedIn и данные текущего пользователя
   const tokenCheck = () => {
-    getUserInfo().then((res) => {
+    getUserInfo()
+    .then((res) => {
       if (res.data._id) {
         setCurrentUser(res.data);
         setIsLoggedIn(true);
         localStorage.setItem("logIn", true);
       }
-    });
+    })
+    .catch(err => forceLogOutIfErr(err));
   };
+
+  // Функция делает полный лог-аут в случае, если любой запрос к серверу заканчивается ошибкой авторизации
+  const forceLogOutIfErr = (err) => {
+    if (err.response === 'Authorization is needed') {
+      setIsLoggedIn(false);
+      localStorage.clear();
+      setAllMovies([]);
+      setSavedMovies([]);
+      setCurrentUser({});
+      setErrorMessage('');
+      navigate("/");
+      console.log(err.response);
+      setIsDisabledEditProfile(false);
+    } else { return err}
+  }
+
 
   // При загрузке страницы используем tokenCheck
   useEffect(() => {
@@ -255,30 +284,33 @@ const App = () => {
                 }
                 path="/profile"
               />
-
               <Route path="/*" element={<PageNotFound />} />
             </Route>
 
-            <Route
-              path="/signup"
-              element={
-                <Register
-                  handleSignup={handleSignup}
-                  errorMesage={errorMesage}
-                  setErrorMessage={setErrorMessage}
-                />
-              }
-            />
-            <Route
-              path="/signin"
-              element={
-                <Login
-                  handleLogin={handleLogin}
-                  errorMesage={errorMesage}
-                  setErrorMessage={setErrorMessage}
-                />
-              }
-            />
+
+            <Route element={<OpenRoutes isLoggedIn={isLoggedIn} />}>
+              <Route
+                path="/signup"
+                element={
+                  <Register
+                    handleSignup={handleSignup}
+                    errorMesage={errorMesage}
+                    setErrorMessage={setErrorMessage}
+                  />
+                }
+              />
+              <Route
+                path="/signin"
+                element={
+                  <Login
+                    handleLogin={handleLogin}
+                    errorMesage={errorMesage}
+                    setErrorMessage={setErrorMessage}
+                  />
+                }
+              />
+            </Route>
+
           </Routes>
         </main>
         <Footer />

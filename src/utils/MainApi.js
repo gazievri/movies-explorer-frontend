@@ -57,8 +57,6 @@ export const updateUserInfo = (name, email) => {
   }).then(checkResponse);
 };
 
-
-
 export const logout = () => {
   return fetch(`${MAIN_API}/signout`, {
     method: "GET",

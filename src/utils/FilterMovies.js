@@ -1,3 +1,5 @@
+import { SHORT_MOVIES_LENGTH } from './constants.js';
+
 const filterMovies = (movies, keyWords, isCheckBoxActive) => {
   let filteredMovies = movies;
 
@@ -6,7 +8,7 @@ const filterMovies = (movies, keyWords, isCheckBoxActive) => {
   }
 
   if (isCheckBoxActive) {
-    filteredMovies = filteredMovies.filter(item => item.duration <= 40);
+    filteredMovies = filteredMovies.filter(item => item.duration <= SHORT_MOVIES_LENGTH);
   }
   console.log('!', movies.length, filteredMovies.length, keyWords, isCheckBoxActive)
 

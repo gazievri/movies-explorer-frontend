@@ -57,9 +57,11 @@ const Profile = ({
     } else {
       setIsDataTheSame(false);
     }
+
   }, [currentUser, getValues(["name", "email"])]);
 
-  // Эффект устанавливает занчения полей по умолчанию из данных текущего пользователя
+
+  // Эффект устанавливает значения полей по умолчанию из контекста текущего пользователя
   useEffect(() => {
     setValue("name", currentUser.name);
     setValue("email", currentUser.email);

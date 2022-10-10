@@ -1,13 +1,19 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import {
+  MOVIES_PER_PAGE_SIZE_MORE_1280,
+  MOVIES_PER_PAGE_SIZE_761_1279,
+  MOVIES_PER_PAGE_SIZE_LESS_761,
+  MOVIES_BTN_ADD_SIZE_MORE_1280,
+  MOVIES_BTN_ADD_SIZE_LESS_1279,
+} from '../../utils/constants.js'
 
 const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
   const [moviesStartPack, setMoviesStartPack] = useState(moviesToRender);
   const [isBtnHidden, setIsBtnHidden] = useState(false);
-  const [moviesPerPage, setMoviesPerPage] = useState(12);
-  const [moviesAddToPage, setMoviesAddToPage] = useState(3);
+  const [moviesPerPage, setMoviesPerPage] = useState(MOVIES_PER_PAGE_SIZE_MORE_1280);
+  const [moviesAddToPage, setMoviesAddToPage] = useState(MOVIES_BTN_ADD_SIZE_MORE_1280);
   console.log(moviesStartPack, 'cardlist')
 
   // Определение ширины экрана и установление количества отображемых фильмов на страинце и количества добавляемых фильмов при нажатие клавиши Еще
@@ -15,14 +21,14 @@ const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
     const screenWidth = window.screen.width;
 
     if (screenWidth >= 1280) {
-      setMoviesPerPage(12);
-      setMoviesAddToPage(3);
+      setMoviesPerPage(MOVIES_PER_PAGE_SIZE_MORE_1280);
+      setMoviesAddToPage(MOVIES_BTN_ADD_SIZE_MORE_1280);
     } else if (screenWidth < 1280 && screenWidth > 761) {
-      setMoviesPerPage(8);
-      setMoviesAddToPage(2);
+      setMoviesPerPage(MOVIES_PER_PAGE_SIZE_761_1279);
+      setMoviesAddToPage(MOVIES_BTN_ADD_SIZE_LESS_1279);
     } else {
-      setMoviesPerPage(5);
-      setMoviesAddToPage(2);
+      setMoviesPerPage(MOVIES_PER_PAGE_SIZE_LESS_761);
+      setMoviesAddToPage(MOVIES_BTN_ADD_SIZE_LESS_1279);
     }
   };
 
