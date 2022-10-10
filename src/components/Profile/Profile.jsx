@@ -18,13 +18,12 @@ const Profile = ({
   // Инициация формы через useForm
   const {
     register,
-    formState: { errors, isValid },
+    formState: { isValid },
     handleSubmit,
     setValue,
-    getValues,
     watch,
   } = useForm({
-    mode: "all",
+    mode: "all"
   });
 
   // Обработка клика на выход из профиля
@@ -48,18 +47,22 @@ const Profile = ({
 
   // Эффект отслеживает текущее значение полей формы и если текущие значения не совпадают с данными пользователя, то устанавливает стейт IsDataTheSame ложным
   useEffect(() => {
-    const valuesField = getValues(["name", "email"]);
+    const name = watch('name')
+    console.log(name, '!')
+    const email = watch('email')
     if (
-      currentUser.name === valuesField[0] &&
-      currentUser.email === valuesField[1]
+      currentUser.name !== name ||
+      currentUser.email !== email
     ) {
-      setIsDataTheSame(true);
-    } else {
       setIsDataTheSame(false);
+    } else {
+      setIsDataTheSame(true);
     }
+    console.log(currentUser.name === name)
 
-  }, [currentUser, getValues(["name", "email"])]);
+  }, [currentUser, watch()])
 
+console.log(isDataTheSame)
 
   // Эффект устанавливает значения полей по умолчанию из контекста текущего пользователя
   useEffect(() => {
