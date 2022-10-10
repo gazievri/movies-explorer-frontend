@@ -2,7 +2,7 @@ import "./MoviesCard.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const MoviesCard = ({ movie, handleClick}) => {
+const MoviesCard = ({ movie, handleClick }) => {
   const { nameRU, trailerLink, duration, image } = movie;
   const [isSaved, setIsSaved] = useState(movie.saved);
   const { pathname } = useLocation();
@@ -18,7 +18,7 @@ const MoviesCard = ({ movie, handleClick}) => {
   const handleClickOnIcon = () => {
     setIsSaved(!isSaved); // Меняем сстатус сохранения фильма
     handleClick(movie, isSaved); // Выполняем функцию, которая приходит в пропсах (либо из movies либо ищ saved-movies)
-  }
+  };
 
   return (
     <div className="moviescard">
@@ -43,11 +43,7 @@ const MoviesCard = ({ movie, handleClick}) => {
         target="_blank"
         rel="noreferrer"
       >
-        <img
-          className="moviescard__image"
-          src={image}
-          alt={nameRU}
-        />
+        <img className="moviescard__image" src={image} alt={nameRU} />
       </a>
     </div>
   );

@@ -2,7 +2,7 @@ import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { useState, useEffect } from 'react';
-import { filterMovies, filterMoviesCheckBox } from '../../utils/FilterMovies';
+import { filterMovies } from '../../utils/FilterMovies';
 
 const SavedMovies = ({ savedMovies, handleDeleteMovie }) => {
   const [flag] = useState('saved');

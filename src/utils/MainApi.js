@@ -80,7 +80,6 @@ export const saveMovie = (movieData) => {
   .then(checkResponse);
 }
 
-
 export const getSavedMovies = () => {
   return fetch(`${MAIN_API}/movies`, {
     method: "GET",

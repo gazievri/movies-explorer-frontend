@@ -118,7 +118,6 @@ const App = () => {
       .catch((err) => forceLogOutIfErr(err));
   };
 
-
   // Обработка обновления данных профиля
   const handleUpdateUserData = ({ name, email }) => {
     updateUserInfo(name, email)
@@ -218,7 +217,6 @@ const App = () => {
       setCurrentUser({});
       setErrorMessage('');
       navigate("/");
-      console.log(err, '&&&');
       setIsDisabledEditProfile(false);
     } else { return err}
   }
