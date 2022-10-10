@@ -1,5 +1,4 @@
 import "./FilterCheckbox.css";
-import { useState } from "react";
 
 const FilterCheckbox = ({ isCheckBoxActive, handleCheckBoxClick }) => {
   const handleOnClick = () => {

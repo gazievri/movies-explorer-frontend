@@ -2,20 +2,23 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useState } from 'react';
 
-const SearchForm = ({ handleMoviesSearch, keyWords = '', isCheckBoxActive, handleCheckBoxClick, setKeyWords }) => {
+const SearchForm = ({ handleMoviesSearch, keyWords = '', isCheckBoxActive, setIsCheckBoxActive }) => {
   const [ isSpanActive, setIsSpanActive ] = useState(false);
   const searchBtn = document.querySelector('.searchfilm__btn');
-  const [ text, setText ] = useState(keyWords)
-
+  const [ text, setText ] = useState(keyWords);
+ 
   // Обработка сабмита формы
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text) {
-      setKeyWords(text);
-      handleMoviesSearch();
+      handleMoviesSearch(text, isCheckBoxActive);
     } else {
       setIsSpanActive(true);
     }
+  }
+
+  const handleCheckBoxClick = () => {
+    setIsCheckBoxActive(!isCheckBoxActive);
   }
 
   // Обработка отправки формы по нажатию Enter

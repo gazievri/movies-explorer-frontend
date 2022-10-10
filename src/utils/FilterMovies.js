@@ -15,5 +15,17 @@ const filterMovies = (movies, keyWords, isCheckBoxActive) => {
   return filteredMovies
 }
 
+const filterMoviesCheckBox = (movies, isCheckBoxActive) => {
+  let filteredMovies = movies;
 
-export default filterMovies;
+  if (isCheckBoxActive) {
+    filteredMovies = filteredMovies.filter(item => item.duration <= SHORT_MOVIES_LENGTH);
+  }
+  console.log('!!!', movies.length, filteredMovies.length, isCheckBoxActive)
+
+  return filteredMovies
+}
+
+
+
+export { filterMovies, filterMoviesCheckBox };

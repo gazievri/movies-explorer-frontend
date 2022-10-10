@@ -217,7 +217,7 @@ const App = () => {
       setCurrentUser({});
       setErrorMessage('');
       navigate("/");
-      console.log(err.response);
+      console.log(err, '&&&');
       setIsDisabledEditProfile(false);
     } else { return err}
   }
@@ -235,7 +235,10 @@ const App = () => {
     if (isLoggedIn) {
       getSavedMovies()
         .then((data) => setSavedMovies(data.data))
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          forceLogOutIfErr(err);
+          console.log(err)
+        });
     }
   }, [isLoggedIn]);
 

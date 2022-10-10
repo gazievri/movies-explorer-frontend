@@ -9,12 +9,11 @@ import {
   MOVIES_BTN_ADD_SIZE_LESS_1279,
 } from '../../utils/constants.js'
 
-const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
+const MoviesCardList = ({ moviesToRender, flag, handleClick, allMovies }) => {
   const [moviesStartPack, setMoviesStartPack] = useState(moviesToRender);
   const [isBtnHidden, setIsBtnHidden] = useState(false);
   const [moviesPerPage, setMoviesPerPage] = useState(MOVIES_PER_PAGE_SIZE_MORE_1280);
   const [moviesAddToPage, setMoviesAddToPage] = useState(MOVIES_BTN_ADD_SIZE_MORE_1280);
-  console.log(moviesStartPack, 'cardlist')
 
   // Определение ширины экрана и установление количества отображемых фильмов на страинце и количества добавляемых фильмов при нажатие клавиши Еще
   const checkWindowWidth = () => {
@@ -69,7 +68,14 @@ const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
 
   return (
     <div className={`moviescardlist`}>
-      {moviesToRender.length !== 0 ? (
+
+      {
+
+
+allMovies.length === 0 ?
+<div></div> :
+
+      moviesToRender.length !== 0 ? (
         <>
           <div className="moviescardlist__container">
             {moviesStartPack.map((movie) => (
@@ -92,6 +98,8 @@ const MoviesCardList = ({ moviesToRender, flag, handleClick }) => {
           Ничего не найдено...
         </div>
       )}
+
+
     </div>
   );
 };

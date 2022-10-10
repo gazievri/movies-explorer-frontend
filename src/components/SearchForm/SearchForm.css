@@ -45,6 +45,7 @@
 
 .searchfilm__btn:disabled {
   background: rgba(248, 248, 248, .5);
+  opacity: 80%;
 }
 
 .searchfilm__btn-icon {
