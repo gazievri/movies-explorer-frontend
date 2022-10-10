@@ -106,13 +106,14 @@ const App = () => {
   // Обработка де-авторизации
   const handleLogout = () => {
     logout()
-      .then(() => {
+      .then((res) => {
         setIsLoggedIn(false);
         localStorage.clear();
         setAllMovies([]);
         setSavedMovies([]);
         setCurrentUser({});
         navigate("/");
+        console.log(res);
       })
       .catch((err) => forceLogOutIfErr(err));
   };
