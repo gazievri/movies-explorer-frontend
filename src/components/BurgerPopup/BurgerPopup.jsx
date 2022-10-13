@@ -1,5 +1,4 @@
 import "./BurgerPopup.css";
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const BurgerPopup = ({ isPopupOpened, handlePopupOpen }) => {

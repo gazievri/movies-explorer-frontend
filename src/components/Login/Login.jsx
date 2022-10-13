@@ -1,22 +1,21 @@
 import "./Login.css";
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
-import { isValidElement, useState } from "react";
 import { useForm } from "react-hook-form";
 import { REGEXP_EMAIL } from "../../utils/constants";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, errorMesage, setErrorMessage }) => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
   } = useForm({
     mode: "all",
   });
 
   const onSubmit = (data) => {
-    console.log(data);
-    handleLogin();
+    setErrorMessage("");
+    handleLogin(data);
   };
 
   return (
@@ -60,7 +59,18 @@ const Login = ({ handleLogin }) => {
         {errors.password ? errors.password.message : "1"}
       </span>
 
-      <button className="login__button">Войти</button>
+      <span
+        className={`login__server-error ${
+          errorMesage ? "login__server-error_active" : ""
+        }`}
+      >
+        {errorMesage ? errorMesage : "1"}
+      </span>
+      <button
+        className={`login__button ${!isValid ? "login__button_disabled" : ""}`}
+      >
+        Войти
+      </button>
       <p className="login__subtitle">
         Еще не зарегистрированы?{" "}
         <Link to="/signup" className="login__link">

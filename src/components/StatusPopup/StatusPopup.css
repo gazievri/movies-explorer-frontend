@@ -1,7 +1,8 @@
 .statuspopup {
   position: absolute;
   display: none;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(32, 32, 32, 1);
   font-family: 'Inter', 'Arial', serif;
   font-style: normal;
@@ -9,11 +10,13 @@
 
 .statuspopup_status_opened {
   display: flex;
+
+  justify-items: center;
 }
 
 .statuspopup__container {
   flex-direction: column;
-  margin: 70px auto 50px;
+  margin: 100px auto 50px;
   width: 396px;
   font-weight: 500;
   font-size: 24px;
@@ -26,29 +29,5 @@
   font-size: 24px;
   line-height: 29px;
   margin: 40px 0 60px;
-}
-
-.statuspopup__message {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-}
-
-.statuspopup__button {
-  width: 100%;
-  height: 45px;
-  background-color: rgba(66, 133, 244, 1);
-  border-radius: 3px;
-  color: rgba(255, 255, 255, 1);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  border: none;
-  margin: 300px 0 16px;
-  transition: 0.3s;
-}
-
-.statuspopup__button:hover {
-  cursor: pointer;
-  opacity: 80%;
+  text-align: center;
 }

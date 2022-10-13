@@ -1,18 +1,17 @@
-import './StatusPopup.css';
-import Logo from '../Logo/Logo';
+import "./StatusPopup.css";
 
-const StatusPopup = () => {
+const StatusPopup = ({ isLoggedIn, isStatusPopupOpened }) => {
   return (
-    <div className='statuspopup'>
-      <div className='statuspopup__container'>
-        <Logo />
-        <h2 className='statuspopup__status'>Статус</h2>
-        <p className='statuspopup__message'>Текст ошибки</p>
-        <button className='statuspopup__button' type='button'>Попробовать еще раз</button>
+    <div
+      className={`statuspopup ${
+        isStatusPopupOpened ? "statuspopup_status_opened" : ""
+      }`}
+    >
+      <div className="statuspopup__container">
+        <h2 className="statuspopup__status">Профиль успешо обновлен</h2>
       </div>
     </div>
-
-  )
-}
+  );
+};
 
 export default StatusPopup;

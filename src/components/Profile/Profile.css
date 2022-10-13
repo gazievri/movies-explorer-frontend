@@ -35,6 +35,52 @@
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 1);
+  text-align: end;
+}
+
+
+.profile__save-btn {
+  height: 45px;
+  background-color: rgba(66, 133, 244, 1);
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  margin: 0 0 16px;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.profile__save-btn:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.profile__save-btn_disabled {
+  background: rgba(248, 248, 248, .5);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+.profile__server-error {
+  visibility: hidden;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin: 0 0 6px;
+  color: rgba(238, 52, 101, 1);
+}
+
+.profile__server-error_active {
+  visibility: visible;
 }
 
 .profile__edit {

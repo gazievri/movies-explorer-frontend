@@ -1,23 +1,23 @@
 import "./MoviesCard.css";
-import { MOVIE_URL } from "../../utils/constants";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const MoviesCard = ({ movie }) => {
-  const { nameRU, duration, image } = movie;
-  const url = image.formats.thumbnail.url;
-  const [isSaved, setIsSaved] = useState(false);
-
+const MoviesCard = ({ movie, handleClick }) => {
+  const { nameRU, trailerLink, duration, image } = movie;
+  const [isSaved, setIsSaved] = useState(movie.saved);
   const { pathname } = useLocation();
 
+  // Форматирование продолжительности фильма в часы
   const getTimeFromMins = (duration) => {
     let hours = Math.trunc(duration / 60);
     let minutes = duration % 60;
     return `${hours}ч ${minutes}м`;
   };
 
-  const handleClickSaveMovie = () => {
-    setIsSaved(!isSaved);
+  // Обрабокта на жатия клика на иконке
+  const handleClickOnIcon = () => {
+    setIsSaved(!isSaved); // Меняем сстатус сохранения фильма
+    handleClick(movie, isSaved); // Выполняем функцию, которая приходит в пропсах (либо из movies либо ищ saved-movies)
   };
 
   return (
@@ -33,15 +33,18 @@ const MoviesCard = ({ movie }) => {
               ? "moviescard__icon_delete"
               : "moviescard__icon"
           } ${isSaved ? "moviescard__icon_active " : ""}`}
-          onClick={handleClickSaveMovie}
-          type='button'
+          onClick={handleClickOnIcon}
+          type="button"
         ></button>
       </div>
-      <img
-        className="moviescard__image"
-        src={`${MOVIE_URL}${url}`}
-        alt={nameRU}
-      />
+      <a
+        className="moviescard__img-link"
+        href={trailerLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img className="moviescard__image" src={image} alt={nameRU} />
+      </a>
     </div>
   );
 };

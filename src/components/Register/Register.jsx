@@ -2,19 +2,22 @@ import "./Register.css";
 import Logo from "../Logo/Logo";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { REGEXP_EMAIL } from "../../utils/constants";
+import { REGEXP_EMAIL, REGEXP_NAME } from "../../utils/constants";
 
-const Register = () => {
+const Register = ({ handleSignup, errorMesage, setErrorMessage }) => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
   } = useForm({
     mode: "all",
   });
 
+
+  // Обработчик нажатия сабмита
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    handleSignup(data);
+    setErrorMessage('');
   };
 
   return (
@@ -36,6 +39,10 @@ const Register = () => {
             maxLength: {
               value: 30,
               message: "Имя должно состоять не более чем из 30 букв",
+            },
+            pattern: {
+              value: REGEXP_NAME,
+              message: "Поле может содержать буквы, тире или пробелы",
             },
           })}
         />
@@ -90,7 +97,8 @@ const Register = () => {
         {errors.password ? errors.password.message : "1"}
       </span>
 
-      <button className="register__button">Зарегистрироваться</button>
+      <span className={`register__server-error ${errorMesage ? 'register__server-error_active' : ''}`}>{errorMesage ? errorMesage : '1'}</span>
+      <button className={`register__button ${!isValid ? 'register__button_disabled' : ''}  `}>Зарегистрироваться</button>
       <p className="register__subtitle">
         Уже зарегистрированы?{" "}
         <Link to="/signin" className="register__link">

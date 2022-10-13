@@ -4,7 +4,7 @@
   align-items: center;
   column-gap: 12px;
   justify-content: center;
-  margin: 42px 0 70px;
+  margin: 14px 0 70px;
   font-family: 'Inter', 'Arial', serif;
   font-style: normal;
 }
@@ -45,6 +45,6 @@
 
 @media (max-width: 891px) {
   .filtercheckbox   {
-    margin: 42px 0 51px;
+    margin: 14px 0 51px;
   }
 }
